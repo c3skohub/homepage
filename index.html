@@ -1,193 +1,114 @@
-<!DOCTYPE NETSCAPE-Bookmark-file-1>
-<!-- This is an automatically generated file.
-     It will be read and overwritten.
-     DO NOT EDIT! -->
+<!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bookmarks</title>
-
-<style>
-  :root{
-    --bg:#121212;
-    --card:#1e1e1e;
-    --card-hover:#2a2a2a;
-    --text:#eaeaea;
-    --muted:#b3b3b3;
-    --accent:#ffa500;      /* ocra */
-    --accent-ink:#16120a;
-    --border:#2a2a2a;
-    --radius:14px;
-    --gap:14px;
-  }
-
-  /* Reset gentile */
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-  }
-
-  /* Contenitore centrale */
-  .wrap{
-    max-width:1000px;
-    margin:32px auto 48px;
-    padding:0 16px;
-  }
-
-  header{
-    display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:22px;
-    border-bottom:1px solid var(--border);padding-bottom:10px;
-  }
-  header h1{
-    margin:0;color:var(--accent);font-size:clamp(20px,4vw,28px);letter-spacing:.3px
-  }
-  header .hint{
-    margin:0;color:var(--muted);font-size:13px
-  }
-
-  /* Sezioni (gli <H3> del file Netscape) */
-  h3{
-    color:var(--accent);
-    margin:26px 0 12px;
-    font-size:clamp(16px,3vw,18px);
-    letter-spacing:.2px
-  }
-
-  /* Griglia link: usiamo il markup originale <DL><DT><A> */
-  dl{margin:0}
-  dl p{margin:0} /* il file usa <DL><p>: evitiamo spazi strani */
-  /* Ogni gruppo di link dopo un <H3> lo rendiamo griglia */
-  .links{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(200px,1fr));
-    gap:var(--gap);
-    margin:10px 0 24px;
-  }
-
-  /* Card link */
-  dt{list-style:none}
-  dt a{
-    display:block;
-    background:var(--card);
-    color:var(--text);
-    text-decoration:none;
-    padding:14px 14px 13px;
-    border-radius:var(--radius);
-    border:1px solid var(--border);
-    transition:transform .08s ease, background .15s ease, border-color .15s ease;
-    min-height:56px;
-    position:relative;
-    overflow:hidden;
-  }
-  /* Alcuni tuoi <A> hanno un <BR> prima del testo: lo gestiamo a livello visuale */
-  dt a br:first-child{display:none}
-
-  dt a:hover{
-    background:var(--card-hover);
-    border-color:#3a3a3a;
-    transform:translateY(-1px)
-  }
-
-  /* Piccolo badge di sezione opzionale su hover */
-  dt a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-
-  /* Separatore morbido tra macro-sezioni */
-  .section{margin:16px 0 6px}
-  .section hr{
-    border:0;border-top:1px dashed var(--border);margin:18px 0
-  }
-
-  /* Footer */
-  footer{
-    margin-top:28px;color:var(--muted);font-size:12px;text-align:center
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotidiani & Periodici</title>
+  <style>
+    body {
+      background: #121212;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: #ffa500;
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    a {
+      display: block;
+      background: #1e1e1e;
+      color: #e0e0e0;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    a:hover {
+      background: #2a2a2a;
+      color: #ffa500;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid #333;
+      margin: 30px 0;
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>Bookmarks</h1>
-    <p class="hint">Pagina personale – tema dark + accenti ocra</p>
-  </header>
+  <h1>📰 Quotidiani & Periodici Online</h1>
 
-  <!-- INIZIO: CONTENUTO ORIGINALE (struttura Netscape invariata) -->
-  <DL><p>
-
-    <div class="section">
-      <H3 ADD_DATE="1589000984" LAST_MODIFIED="0" PERSONAL_TOOLBAR_FOLDER="true">Barra dei Preferiti</H3>
-      <div class="links">
-        <!-- vuoto per ora, ma resta come sezione -->
-      </div>
-      <hr>
+  <!-- NAZIONALI -->
+  <div class="section">
+    <h3>Quotidiani nazionali</h3>
+    <div class="links">
+      <a href="https://www.corriere.it/">Corriere della Sera</a>
+      <a href="https://www.repubblica.it/">La Repubblica</a>
+      <a href="https://www.lastampa.it/">La Stampa</a>
+      <a href="https://www.ilsole24ore.com/">Il Sole 24 Ore</a>
+      <a href="https://www.ilgiornale.it/">Il Giornale</a>
+      <a href="https://www.ilfattoquotidiano.it/">Il Fatto Quotidiano</a>
+      <a href="https://www.avvenire.it/">Avvenire</a>
+      <a href="https://www.ilmanifesto.it/">Il Manifesto</a>
+      <a href="https://www.liberoquotidiano.it/">Libero</a>
+      <a href="https://www.iltempo.it/">Il Tempo</a>
     </div>
+    <hr>
+  </div>
 
-    <div class="section">
-      <H3>NEWS</H3>
-      <div class="links">
-        <DT><A HREF="https://www.agi.it/" ADD_DATE="" ICON=><BR>Agi</A></DT>
-        <DT><A HREF="https://www.adnkronos.com/" ADD_DATE="1589001179" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACxklEQVQ4jV2TTWhdBRCFv7nv5iYvealJTKnREhOUxFrbxp9CjRaltdo2UtK6daEIRZCCShERF7pwJQi6cieKiGI3QlduqhYVN0IWUltxY2KKjTaJfX/33TtzXLwkogOzGObMwJwzx3a9d7ghqCDA2IqeJN2oDSko3f/tb2ANPHVXiikTkoUZBiZYWr2KhyNEtaeXkdoIHoEBMslkhqyTSh6AJEkb24ui4M1DLzLSN4QZLCxf4sOFcwwNDuHhIIQZiEgjwgATIrXUVltr7BuZ5szDz26dM7/7KOd+PE8rb5FVMoLAMAMsiRARwj2Q4Eajzom7H0eIwgs6ZUG1r8qhyQNcX18DjM2ZCJFElEQ4KGgXLbal/Zzae4zfri3y8Vef0VNJQeLE3ico2zkRTnemm0l44B4Yxlpjnftu2c1tw2NcuPQt7375PmZd6h+dmmV8YIx6ow5huIvwIPEIPJwQNBsNTu05jofz0cVPWfjlOy7+/D0Ag/2DHJk6yPUbq2CGh+MRJAqHEK28yWjfEHP3HKaSVHj95Fm+eO08kztuR12ZmJ85RpI7ZVmicBROUnpglvB3o87s+P3cOjzG0p/LbOsZYHx0J3+srkBXYA5OHeDOoQkarSYoofQgIUSr0yS/tshTM3OExNPvPMP+V/fz4NtzPPDyDBd++gaA3qyXo7seYX3xCi5HEaR52WE4HeDkQ88xf+9xJDG98y5WsiYrZZ3ZsT3kZYEZhIIzR07z6++X+WHtCk2VwPM3t1/6/A1JkodUukuSPvj6E20/PaGy+6MKSRHaisfeelK8MNa26tk7Wjuym3one7erdDeANKlwtb3Gcusv9o1OkBSGNn0kYUmiy/Ulq1snt9or03lR5FnebgoS2yQszTL6sir15nrXff91q6r9NatU0k7qpZdpJVNPrQ8z28KFgoigVhv5v4uRRCjw0v0fVh+tMc/sDQEAAAAASUVORK5CYII="><BR>ADNKRONOS</A></DT>
-        <DT><A HREF="https://www.ilfattoquotidiano.it/" ADD_DATE="1589001228" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAC3ElEQVQ4jY2TbWhTdxTGf//b5KZJW03XpJG+WWu7kTYW1tphGUwQCnOdm29VmY4hUpGxzbF+cfviZSA6pC2lpV9WtnYwBIUynaKBKgVfQBGxuCkTF2ug0jQYU5t7mzT35r8P3o1SKu7A8+XwcA6c83sEy5diC0Au6gvAXGzMe8UACeRsyUXKSRAClHF7sMNuCNuMpmnKyNDP+xFUA0IImTIhnVRV4TVNv6iu/p7x8XQH5J0BSyzZLABZU1ZWJZzqqKIozcmc1eQzjFRbKnX0eknJ3pZEYqjRMEY/h4uAUL7Iz9/3kc/3Ax0dKiC7urrqI0+fRnXD+NOUMn3jyZO/D8bjQyWmmdAtDj5yuycEHD8J/YCky+V61Oovlf6y8ruhN4O7R4aHExMTE+fefWfDLV9F5bPvVPVUZ3Gx5K2GnYFAoAAplT54/yeQPbBNuer1fl3csv5+qLZ2xR8PH+wIhULOUr9/i7uwsNaTzRZNejzbbxcWWpVGqjQWi+lSCHSYnAcL6HTcisXOXzh0aFVNXd2msbGxvwzD+HhqaiqaSD5POhXR2JpMZqvm03n9lRVz9pFyPTBnvXzzG3mA4ikoSDSua+yLx2c2Hv7yK2ckEvEe+fZIYPTs79PNqblMkWnGqnT9zF7LOtAGbTkw8+ETC64s/oDH5/M1fbbvU2vtmhrz15Ff5Ib3NqZ3uVzn+4WQffAbwEnYNgDzPZDqhSaHBooGucHBweDc7IvTbrfbDDbUO6bjM8Oxx5HbDytWL9RFH0+vymbbB6BtAQJOyM/Anm/gjkOzicrMzj7LLCyo169dU31+f679w/aiSDQ6LITQj8GPvRB0wNuAy8bU3wub/0VZhC9fTtY3NFxwqerW8opyb30wOHXpbPiKntFTLZOTogdmLsK9MNzcBB8UQWcGMksppLu7uzIcDjcvEw5x+mV2xAlYOQCtHctk6T+0pZRLMf/fJTRNU17rseP+D/4YIFA8btWrAAAAAElFTkSuQmCC"><BR>Il Fatto Quotidiano</A></DT>
-        <DT><A HREF="https://www.repubblica.it/" ADD_DATE="" ICON=><BR>La Repubblica</A></DT>
-        <DT><A HREF="https://www.corriere.it/" ADD_DATE="" ICON=><BR>Corriere della Sera</A></DT>
-        <DT><A HREF="https://www.lastampa.it/" ADD_DATE="" ICON=><BR>La Stampa</A></DT>
-        <DT><A HREF="https://www.ilmessaggero.it/" ADD_DATE="" ICON=><BR>Il Messaggero</A></DT>
-        <DT><A HREF="https://www.open.online/" ADD_DATE="1608030820" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB/UlEQVQ4jY2TvUpjcRDFfzMXuWKhJIaUwY83sLK1DVhkV3ZfIYVEsRAtBV/BSrhW1oIvkMJCfAKFXJUsSdxFdtFCDCT5n22815jdhR2YYoY583kG4AvQAUbAyN0DoL9pFEUhiwO+AZ8M+AkUgQAYYKVSibW1NRYWFjAzWq0WzWaTp6cnxhI68D1z5FX39/dDr9fTpLTbbW1tbYWx+EwJZqYoisLp6WnIANfX10qSRCcnJ7q5uckTHR8fBzMbmZmAAdnMu7u7QZJeXl7UaDQUx3E+exzH2tnZ0evrqySp0WgEQO4+AFCpVNLj46MkaXt7Owe6u9w9t/f29iRJvV4vzM3NCRgCaGNjQ5LUarU0NTUld9dbiwJkZnJ3TU9P6/7+XpK0vr4uYOgAS0tLSOLy8pLBYIAkJJGJJEII9Pt9rq6uALS4uAhvp8gBGWgcPCnu/tEGSNMUd6darVIsFv8AmRnuzszMDKurqwCWpul7h4VCQQ8PDzo/P1e5XM7nzjTbxcHBgSSp2+2G2dnZfIkB0PLy8j8pPD8/r8PDQw2HQ0lSvV7/cMZJduW3T5JEZ2dn6nQ6OZGOjo4C8E6kDJy1amYB0MrKygcq393daXNzc7LYyIBfQOHNYWZmkqhUKtRqNQBub2+5uLjg+fmZsdEc+AHwFejy/qb/+84d4PNvng2Esh9dCOcAAAAASUVORK5CYII="><BR>OPEN - Il giornale online</A></DT>
-        <DT><A HREF="https://www.ilpost.it/" ADD_DATE="1608030820" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB/UlEQVQ4jY2TvUpjcRDFfzMXuWKhJIaUwY83sLK1DVhkV3ZfIYVEsRAtBV/BSrhW1oIvkMJCfAKFXJUsSdxFdtFCDCT5n22815jdhR2YYoY583kG4AvQAUbAyN0DoL9pFEUhiwO+AZ8M+AkUgQAYYKVSibW1NRYWFjAzWq0WzWaTp6cnxhI68D1z5FX39/dDr9fTpLTbbW1tbYWx+EwJZqYoisLp6WnIANfX10qSRCcnJ7q5uckTHR8fBzMbmZmAAdnMu7u7QZJeXl7UaDQUx3E+exzH2tnZ0evrqySp0WgEQO4+AFCpVNLj46MkaXt7Owe6u9w9t/f29iRJvV4vzM3NCRgCaGNjQ5LUarU0NTUld9dbiwJkZnJ3TU9P6/7+XpK0vr4uYOgAS0tLSOLy8pLBYIAkJJGJJEII9Pt9rq6uALS4uAhvp8gBGWgcPCnu/tEGSNMUd6darVIsFv8AmRnuzszMDKurqwCWpul7h4VCQQ8PDzo/P1e5XM7nzjTbxcHBgSSp2+2G2dnZfIkB0PLy8j8pPD8/r8PDQw2HQ0lSvV7/cMZJduW3T5JEZ2dn6nQ6OZGOjo4C8E6kDJy1amYB0MrKygcq393daXNzc7LYyIBfQOHNYWZmkqhUKtRqNQBub2+5uLjg+fmZsdEc+AHwFejy/qb/+84d4PNvng2Esh9dCOcAAAAASUVORK5CYII="><BR>IL POST</A></DT>
-        <DT><A HREF="https://www.internazionale.it/" ADD_DATE="" ICON=><BR>Internazionale</A></DT>
-        <DT><A HREF="https://www.ilsole24ore.com/" ADD_DATE="" ICON=><BR>Il sole 24 ore</A></DT>
-      </div>
-      <hr>
+  <!-- LOCALI -->
+  <div class="section">
+    <h3>Quotidiani locali (selezione)</h3>
+    <div class="links">
+      <a href="https://www.ilsecoloxix.it/">Il Secolo XIX (Liguria)</a>
+      <a href="https://www.ilgazzettino.it/">Il Gazzettino (Nord-Est)</a>
+      <a href="https://www.ilrestodelcarlino.it/">Il Resto del Carlino</a>
+      <a href="https://www.lanazione.it/">La Nazione</a>
+      <a href="https://www.ilgiorno.it/">Il Giorno</a>
+      <a href="https://www.ilmattino.it/">Il Mattino (Napoli)</a>
+      <a href="https://www.ilcentro.it/">Il Centro (Abruzzo)</a>
+      <a href="https://www.larena.it/">L’Arena (Verona)</a>
+      <a href="https://www.gazzettadimodena.it/">Gazzetta di Modena</a>
+      <a href="https://www.gazzettadireggio.it/">Gazzetta di Reggio</a>
+      <a href="https://www.gazzettadimantova.it/">Gazzetta di Mantova</a>
+      <a href="https://www.trentotoday.it/">TrentoToday</a>
+      <a href="https://www.bolognatoday.it/">BolognaToday</a>
+      <a href="https://www.milanotoday.it/">MilanoToday</a>
+      <a href="https://www.romatoday.it/">RomaToday</a>
+      <a href="https://www.napolitoday.it/">NapoliToday</a>
+      <a href="https://www.palermotoday.it/">PalermoToday</a>
+      <a href="https://www.torinotoday.it/">TorinoToday</a>
+      <a href="https://www.genovatoday.it/">GenovaToday</a>
+      <a href="https://www.immediato.net/">L’Immediato (Foggia)</a>
+      <a href="https://www.foggiatoday.it/">FoggiaToday</a>
     </div>
+    <hr>
+  </div>
 
-    <div class="section">
-      <H3>LOCAL</H3>
-      <div class="links">
-        <DT><A HREF="http://www.romatoday.it/" ADD_DATE="1589001288" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAA40lEQVQ4jbXSsUpCcRTH8c8VIx0tsO5g2FL0CA7R7NLkEzTb2BNEc4/QI7QrRENDQ0PUUNDQUJBgWImDqfhviKjEuNeh33DgnPP7cn7DicLJmlmUmcmN7K+uXLe6CyHoP2o33R8aD5IuhAD5kpUd6/spIj0cOd1wXYelbXOFJACC56b+kygjX04DfFKj7/ql7BRfLlaoKFTkSwYdvdskoFhVrMLwzc2eMEyK9Hqh3YDupc7ZxHIa0L1ydyCMLWyaj1MAeG95ORdlxLV0AFrHENcmPH8D7YZRT27Z4tbPcfTv3/oBicY+/rOT0H0AAAAASUVORK5CYII="> <BR>ROMAToday</A></DT>
-        <DT><A HREF="https://www.foggiatoday.it/" ADD_DATE="1589001307" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAcklEQVQ4jWP85GbLQApgIkk1AwMDCxqfd+chNJHP7nZUtYGBgeH///9fPOxxaSDZBmo4iZGRkXveMgj7a346w+fPBDQwMDAwSctANTMx/Sdow////7/GR0DZnz4RdhIDA8P/l8+xijPQI5RI1sBI89QKAAwYGyjFoRWiAAAAAElFTkSuQmCC"> <BR>FOGGIAToday</A></DT>
-        <DT><A HREF="https://www.immediato.net/" ADD_DATE="" ICON=><BR>L'immediato</A></DT>
-      </div>
-      <hr>
+  <!-- PERIODICI -->
+  <div class="section">
+    <h3>Periodici e Magazine</h3>
+    <div class="links">
+      <a href="https://www.internazionale.it/">Internazionale</a>
+      <a href="https://www.lespresso.it/">L’Espresso</a>
+      <a href="https://www.panorama.it/">Panorama</a>
+      <a href="https://www.oggisettimanale.it/">Oggi</a>
+      <a href="https://www.focus.it/">Focus</a>
+      <a href="https://www.wired.it/">Wired Italia</a>
+      <a href="https://www.vanityfair.it/">Vanity Fair</a>
+      <a href="https://www.gqitalia.it/">GQ Italia</a>
+      <a href="https://www.donnamoderna.com/">Donna Moderna</a>
     </div>
-
-    <div class="section">
-      <H3>SPORT</H3>
-      <div class="links">
-        <DT><A HREF="https://www.gazzetta.it/" ADD_DATE="1608097505" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB8klEQVQ4jZVSv2sUURCemX27e5fbHObgLnBVEjSFoBzYioWof4BgsIytxXGlYpVo4llIQAiC/4BorE+MFuIPooVFiIWFEsUIxiYbJfvj7XszFi9uIgiSqebN+2b4vpkPRURE4H+BiCKCiOTQ5Xt/gojua38PlSAiyrIsyzIiyvMcANI0RcQ8z12PG6REhJmJ6Ony8rUrVwHg9sLCYDB4u7JijBmfGF9bez99abrb61lrPc9Day0zK6UuXpjajuMkTVvNZi2KPq+vB0GAhFmatdvt+0sPjTFEpEpKSqloeHjuVl+Y+/M3D08e0bmuVitJkjKz04CIqiRHREmSdDodIjLGaK2LovA80lortQsDAOXQIqK1braavW5X57perwMA/QmkvXUpRGRmRBxpjLx68dJae+bc2XhrqyiMMLO1WZq5Bncx5ciIyOzM7Fx/ni3fmLl+595iLazmRVEJw+2dn7VwaE9DeeZfoVk9ViDix2zz+9EgCoONOA6V/hpvnpo4AQCAAAAKACyzr9SDd0+ev3kMfrg41BqNGr6oDxuflOf55H/58c0N/YvS+eOnl1afCcDlk1N3Xz8KPDU5OnaoEu3odKzR3qUEiI6S25WxVkB8TxXW+J6ybD3yLFtEpNJ1TjsisjAhAYBLXPEftj2QvQHgN138I1dNYmPxAAAAAElFTkSuQmCC"><BR>La Gazzetta Dello Sport</A></DT>
-        <DT><A HREF="https://onefootball.com/it/home" ADD_DATE="1610915738" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAACf0lEQVQ4jT2STWhUdxTFz7n/N++9TJLpzDRmMsqEChZ0oRFCUoRaBCG68KPdNK7bZSt04aIFQcG2SKm7QiktdNEuuigUQRCqkWZRRA34SZtEWxtDKxpjPpw3mZn3/vd2MTF3eTgcOOf+OGfjAACYGUkz8x4AhLCOCIoDAQNIBh0rgI6bZDFwBFOogA5UWAJvBhIAgk6GmmWZRk4aTX/21P3V5XTncKHV0tl79VJf+OHJrfm8UzOSAUk1i0UiEQG//PzBd+fmQBSKuYs/P/nnYXLgSKUYBw2vIgAQqFpIuXt39cGd5MqvzyYvLnZ1ub0Hy9VatLyYlkvRu+9vDkWSzJMCYL3D6eMz1yaXunsDn9lALfr4i9fPfDSbpjZYi0ffKiXmRdZXkW5xt2+t/nHzRX81qmyODh+r/DIx4jO7eXVFhG/sK1WLccsryU500DKtvdb1w8RwGLK/GlU3xT1w35+ebq5pLuT+I30AnFAVIiAZeFq5HA6UY4Ol0LXM17Ps90vPSdS2du0b66v7LE21FIeJZWYmNGamdZ81vG+l2uPcramVv2cS723snU1Tk8tHR6+/PXr926/nIoopBARJEVAAwpGXzy8017RQDLbv7Pnkgz//mk6ePm59dmJ26sZytzjpcNF5c87Js7X2td+WnMOO3b2VwfjJv61X+8PCK4F6e3i/kaPIBkiq6KabuLBwe2p15UU28mZxz1Bpx1DPf4+aj+db1Vq8Z2+pYT7AyxOybVYo5k58ui0IeOhYRYmvftr14zfzjboff29LrZZvqOcGrQAUloeLIAYk8G3TiJKHA9CENs1Lh9YNYIVseF/XDIA4OmFbtakegAhFaGb/A24WPBM/WNq5AAAAAElFTkSuQmCC"><BR>ONE FOOTBALL</A></DT>
-        <DT><A HREF="https://m.calciomercato.com/" ADD_DATE="1608097505" ICON="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAB8klEQVQ4jZVSv2sUURCemX27e5fbHObgLnBVEjSFoBzYioWof4BgsIytxXGlYpVo4llIQAiC/4BorE+MFuIPooVFiIWFEsUIxiYbJfvj7XszFi9uIgiSqebN+2b4vpkPRURE4H+BiCKCiOTQ5Xt/gojua38PlSAiyrIsyzIiyvMcANI0RcQ8z12PG6REhJmJ6Ony8rUrVwHg9sLCYDB4u7JijBmfGF9bez99abrb61lrPc9Day0zK6UuXpjajuMkTVvNZi2KPq+vB0GAhFmatdvt+0sPjTFEpEpKSqloeHjuVl+Y+/M3D08e0bmuVitJkjKz04CIqiRHREmSdDodIjLGaK2LovA80lortQsDAOXQIqK1braavW5X57perwMA/QmkvXUpRGRmRBxpjLx68dJae+bc2XhrqyiMMLO1WZq5Bncx5ciIyOzM7Fx/ni3fmLl+595iLazmRVEJw+2dn7VwaE9DeeZfoVk9ViDix2zz+9EgCoONOA6V/hpvnpo4AQCAAAAKACyzr9SDd0+ev3kMfrg41BqNGr6oDxuflOf55H/58c0N/YvS+eOnl1afCcDlk1N3Xz8KPDU5OnaoEu3odKzR3qUEiI6S25WxVkB8TxXW+J6ybD3yLFtEpNJ1TjsisjAhAYBLXPEftj2QvQHgN138I1dNYmPxAAAAAElFTkSuQmCC"><BR>CalcioMercato.com</A></DT>
-      </div>
-      <hr>
-    </div>
-
-    <div class="section">
-      <H3>CURIOSITA'</H3>
-      <div class="links">
-        <DT><A HREF="https://espresso.repubblica.it/" ADD_DATE="" ICON=><BR>L'Espresso</A></DT>
-        <DT><A HREF="https://www.panorama.it/" ADD_DATE="" ICON=><BR>Panorama</A></DT>
-        <DT><A HREF="https://www.focus.it/" ADD_DATE="" ICON=><BR>Focus</A></DT>
-        <DT><A HREF="https://www.quattroruote.it/" ADD_DATE="" ICON=><BR>Quattroruote</A></DT>
-      </div>
-      <hr>
-    </div>
-
-    <div class="section">
-      <H3>CRYPTO</H3>
-      <div class="links">
-        <DT><A HREF="https://cryptonomist.ch/" ADD_DATE="" ICON=><BR>Cryptonomist</A></DT>
-        <DT><A HREF="https://www.criptovaluta.it/amp" ADD_DATE="" ICON=><BR>Criptovalute.it</A></DT>
-        <DT><A HREF="https://it.cointelegraph.com/amp" ADD_DATE="" ICON=><BR>Cointelegraph</A></DT>
-        <DT><A HREF="https://it.cryptonews.com/" ADD_DATE="" ICON=><BR>Cryptonews</A></DT>
-        <DT><A HREF="https://www.cryptofeed.it/?amp=1" ADD_DATE="" ICON=><BR>Cryptofeed</A></DT>
-      </div>
-    </div>
-
-  </DL><p>
-  <!-- FINE: CONTENUTO ORIGINALE -->
-  <footer>Ultimo aggiornamento estetico • tema dark/ocra</footer>
-</div>
+  </div>
 </body>
 </html>
