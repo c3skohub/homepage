@@ -1,114 +1,400 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quotidiani & Periodici</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Directory testate italiane – AMOLED v1.2</title>
+  <meta name="color-scheme" content="dark" />
   <style>
-    body {
-      background: #121212;
-      color: #e0e0e0;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
+    :root{
+      --bg:#000; --card:#0a0a0a; --ring:#1a1a1a; --text:#e6e6e6; --muted:#a3a3a3;
+      --accent:#1c9895; --accent-strong:#c7fc54; --ff:system-ui,sans-serif; --fs:16px; --lh:1.4;
     }
-    h1, h2, h3 {
-      color: #ffa500;
-      text-align: center;
-    }
-    .section {
-      margin-bottom: 40px;
-    }
-    .links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 20px;
-    }
-    a {
-      display: block;
-      background: #1e1e1e;
-      color: #e0e0e0;
-      padding: 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    a:hover {
-      background: #2a2a2a;
-      color: #ffa500;
-    }
-    hr {
-      border: 0;
-      border-top: 1px solid #333;
-      margin: 30px 0;
-    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:var(--ff);font-size:var(--fs);line-height:var(--lh)}
+    header{text-align:center;padding:24px 16px 4px}
+    header h1{margin:0 0 6px;font-size:clamp(1.35rem,2.5vw,1.9rem)}
+    header p{margin:0;color:var(--muted)}
+    .container{max-width:1060px;margin:0 auto;padding:16px;will-change:transform}
+
+    .toolbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,auto));
+      gap:10px;margin:14px 0;align-items:center}
+    .control{display:flex;align-items:center;gap:8px;background:var(--card);
+      border:1px solid var(--ring);border-radius:12px;padding:8px 10px}
+    .control label{color:var(--muted);font-size:.92em}
+    .control select{appearance:none;background:transparent;border:none;color:var(--text);outline:none;font-size:1em}
+
+    .toggle{display:flex;align-items:center;gap:8px;background:var(--card);
+      border:1px solid var(--ring);border-radius:12px;padding:8px 10px}
+    .toggle input,#uiToggle{width:34px;height:20px;appearance:none;border-radius:999px;background:#111;outline:1px solid var(--ring);position:relative}
+    .toggle input:checked,#uiToggle:checked{background:#0b2a30;outline-color:var(--accent-strong)}
+    .toggle input:after,#uiToggle:after{content:"";position:absolute;inset:3px;width:14px;height:14px;border-radius:50%;
+      background:#6b7280;transform:translateX(0);transition:transform .18s ease}
+    .toggle input:checked:after,#uiToggle:checked:after{background:var(--accent);transform:translateX(14px)}
+
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+    .chips.sub{margin-top:-6px}
+    .chip{border:1px solid var(--ring);background:var(--card);padding:8px 12px;border-radius:999px;cursor:pointer;color:var(--text)}
+    .chip.active{outline:2px solid var(--accent);color:var(--accent)}
+
+    section{margin:22px 0}
+    section h2{margin:10px 2px 8px;font-size:1.15rem;color:var(--accent)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+    .card{background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:6px}
+    .card h3{margin:0;font-weight:700;font-size:clamp(1.2rem,2.8vw,1.45rem)}
+    .card h3 a{color:#a3bc85;text-decoration:none}
+    .card h3 a:hover,.card h3 a:focus{outline:0;text-decoration:underline}
+    .card p{margin:0;color:var(--muted);font-size:.97rem}
+    footer{text-align:center;color:var(--muted);padding:18px;font-size:.9rem}
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&family=Lato:wght@400;700&family=Montserrat:wght@500;700&family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;600&family=Cardo:wght@400;700&family=Lora:wght@400;600&family=Playfair+Display:wght@500;700&family=Oswald:wght@400;600&family=Ubuntu:wght@400;500&family=Inconsolata:wght@400;600&family=Noto+Sans:wght@400;600&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>📰 Quotidiani & Periodici Online</h1>
-
-  <!-- NAZIONALI -->
-  <div class="section">
-    <h3>Quotidiani nazionali</h3>
-    <div class="links">
-      <a href="https://www.corriere.it/">Corriere della Sera</a>
-      <a href="https://www.repubblica.it/">La Repubblica</a>
-      <a href="https://www.lastampa.it/">La Stampa</a>
-      <a href="https://www.ilsole24ore.com/">Il Sole 24 Ore</a>
-      <a href="https://www.ilgiornale.it/">Il Giornale</a>
-      <a href="https://www.ilfattoquotidiano.it/">Il Fatto Quotidiano</a>
-      <a href="https://www.avvenire.it/">Avvenire</a>
-      <a href="https://www.ilmanifesto.it/">Il Manifesto</a>
-      <a href="https://www.liberoquotidiano.it/">Libero</a>
-      <a href="https://www.iltempo.it/">Il Tempo</a>
+  <header>
+    <h1>Menu</h1>
+    <p></p>
+    <!-- Toggle visibilità filtri/menu -->
+    <div class="control" style="margin:10px auto;width:max-content">
+      <label for="uiToggle">Filtri</label>
+      <input id="uiToggle" type="checkbox" checked />
     </div>
-    <hr>
+  </header>
+
+  <div class="container" id="container">
+    <div class="toolbar" id="toolbar">
+      <div class="control"><label for="presetSel">Preset</label>
+        <select id="presetSel">
+          <option value="none" selected>Personalizzato</option>
+          <option value="elegante">Elegante (Playfair 18)</option>
+          <option value="tecnico">Tecnico (Inconsolata 16)</option>
+          <option value="leggibile">Leggibilità max (Open Sans 20)</option>
+          <option value="moderno">Moderno (Montserrat 18)</option>
+          <option value="classico">Classico (Merriweather 18)</option>
+          <option value="android">Android (Roboto 16)</option>
+        </select>
+      </div>
+      <div class="control"><label for="fontSel">Font</label>
+        <select id="fontSel">
+          <option value="system">Sistema</option><option value="sans">Sans classico</option>
+          <option value="serif">Serif</option><option value="mono">Monospace</option>
+          <option value="readable">Alta leggibilità</option>
+          <option value="openSans">Open Sans</option><option value="roboto">Roboto</option>
+          <option value="lato">Lato</option><option value="montserrat">Montserrat</option>
+          <option value="merriweather">Merriweather</option><option value="sourceSans">Source Sans Pro</option>
+          <option value="cardo">Cardo</option><option value="lora">Lora</option>
+          <option value="playfair">Playfair Display</option><option value="oswald">Oswald</option>
+          <option value="ubuntu">Ubuntu</option><option value="inconsolata">Inconsolata</option>
+          <option value="notoSans">Noto Sans</option><option value="notoSerif">Noto Serif</option>
+        </select>
+      </div>
+      <div class="control"><label for="sizeSel">Dimensione</label>
+        <select id="sizeSel">
+          <option value="14">14</option><option value="15">15</option><option value="16" selected>16</option>
+          <option value="18">18</option><option value="20">20</option><option value="22">22</option>
+        </select>
+      </div>
+      <div class="control"><label for="unitSel">Unità</label>
+        <select id="unitSel"><option value="px" selected>px</option><option value="pt">pt</option></select>
+      </div>
+      <div class="control"><label for="scaleSel">Scala testo</label>
+        <select id="scaleSel">
+          <option value="90">90%</option><option value="100" selected>100%</option>
+          <option value="110">110%</option><option value="125">125%</option><option value="150">150%</option>
+        </select>
+      </div>
+      <div class="control"><label for="densitySel">Densità</label>
+        <select id="densitySel"><option value="compact">Compatta</option><option value="normal" selected>Normale</option><option value="cozy">Aria</option></select>
+      </div>
+      <div class="toggle" title="Micro-spostamento periodico per ridurre burn-in">
+        <label for="burnIn">AMOLED+</label><input id="burnIn" type="checkbox" checked />
+      </div>
+    </div>
+
+    <div id="chips" class="chips"></div>
+    <div id="subchips" class="chips sub" style="display:none"></div>
+    <div id="content"></div>
   </div>
 
-  <!-- LOCALI -->
-  <div class="section">
-    <h3>Quotidiani locali (selezione)</h3>
-    <div class="links">
-      <a href="https://www.ilsecoloxix.it/">Il Secolo XIX (Liguria)</a>
-      <a href="https://www.ilgazzettino.it/">Il Gazzettino (Nord-Est)</a>
-      <a href="https://www.ilrestodelcarlino.it/">Il Resto del Carlino</a>
-      <a href="https://www.lanazione.it/">La Nazione</a>
-      <a href="https://www.ilgiorno.it/">Il Giorno</a>
-      <a href="https://www.ilmattino.it/">Il Mattino (Napoli)</a>
-      <a href="https://www.ilcentro.it/">Il Centro (Abruzzo)</a>
-      <a href="https://www.larena.it/">L’Arena (Verona)</a>
-      <a href="https://www.gazzettadimodena.it/">Gazzetta di Modena</a>
-      <a href="https://www.gazzettadireggio.it/">Gazzetta di Reggio</a>
-      <a href="https://www.gazzettadimantova.it/">Gazzetta di Mantova</a>
-      <a href="https://www.trentotoday.it/">TrentoToday</a>
-      <a href="https://www.bolognatoday.it/">BolognaToday</a>
-      <a href="https://www.milanotoday.it/">MilanoToday</a>
-      <a href="https://www.romatoday.it/">RomaToday</a>
-      <a href="https://www.napolitoday.it/">NapoliToday</a>
-      <a href="https://www.palermotoday.it/">PalermoToday</a>
-      <a href="https://www.torinotoday.it/">TorinoToday</a>
-      <a href="https://www.genovatoday.it/">GenovaToday</a>
-      <a href="https://www.immediato.net/">L’Immediato (Foggia)</a>
-      <a href="https://www.foggiatoday.it/">FoggiaToday</a>
-    </div>
-    <hr>
-  </div>
+  <footer>Ultimo aggiornamento: settembre 2025</footer>
 
-  <!-- PERIODICI -->
-  <div class="section">
-    <h3>Periodici e Magazine</h3>
-    <div class="links">
-      <a href="https://www.internazionale.it/">Internazionale</a>
-      <a href="https://www.lespresso.it/">L’Espresso</a>
-      <a href="https://www.panorama.it/">Panorama</a>
-      <a href="https://www.oggisettimanale.it/">Oggi</a>
-      <a href="https://www.focus.it/">Focus</a>
-      <a href="https://www.wired.it/">Wired Italia</a>
-      <a href="https://www.vanityfair.it/">Vanity Fair</a>
-      <a href="https://www.gqitalia.it/">GQ Italia</a>
-      <a href="https://www.donnamoderna.com/">Donna Moderna</a>
-    </div>
-  </div>
+  <script>
+    // ===== Config font e preset =====
+    const FONT_STACKS={ system:'system-ui, sans-serif', sans:'Arial, Helvetica, Noto Sans, sans-serif', serif:'Georgia, Times New Roman, serif', mono:'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace', readable:'Verdana, Tahoma, Geneva, sans-serif', openSans:'"Open Sans", sans-serif', roboto:'Roboto, sans-serif', lato:'Lato, sans-serif', montserrat:'Montserrat, sans-serif', merriweather:'Merriweather, serif', sourceSans:'"Source Sans 3", "Source Sans Pro", sans-serif', cardo:'Cardo, serif', lora:'Lora, serif', playfair:'"Playfair Display", serif', oswald:'Oswald, sans-serif', ubuntu:'Ubuntu, sans-serif', inconsolata:'Inconsolata, monospace', notoSans:'Noto Sans, sans-serif', notoSerif:'Noto Serif, serif' };
+    const PRESETS={ elegante:{font:'playfair', size:18, density:'cozy'}, tecnico:{font:'inconsolata', size:16, density:'compact'}, leggibile:{font:'openSans', size:20, density:'cozy'}, moderno:{font:'montserrat', size:18, density:'normal'}, classico:{font:'merriweather', size:18, density:'cozy'}, android:{font:'roboto', size:16, density:'normal'} };
+
+    // ===== Dataset =====
+    const RAW = [
+      // Agenzie
+      {name:'ANSA',url:'https://www.ansa.it',desc:'Prima agenzia italiana, notizie h24',cat:'Agenzie'},
+      {name:'AGI',url:'https://www.agi.it',desc:'Agenzia Giornalistica Italia',cat:'Agenzie'},
+      {name:'Adnkronos',url:'https://www.adnkronos.com/it',desc:'Agenzia di stampa',cat:'Agenzie'},
+      {name:'LaPresse',url:'https://www.lapresse.it',desc:'Agenzia – cronaca, politica, sport',cat:'Agenzie'},
+      {name:'askanews',url:'https://www.askanews.it',desc:'Agenzia multimediale',cat:'Agenzie'},
+
+      // All-news / TV
+      {name:'RaiNews',url:'https://www.rainews.it',desc:'All-news RAI',cat:'All-news / TV'},
+      {name:'TGCOM24',url:'https://www.tgcom24.mediaset.it',desc:'All-news Mediaset',cat:'All-news / TV'},
+      {name:'Sky TG24',url:'https://tg24.sky.it',desc:'All-news Sky Italia',cat:'All-news / TV'},
+      {name:'TG LA7',url:'https://www.tg.la7.it',desc:'All-news La7',cat:'All-news / TV'},
+      {name:'Euronews (IT)',url:'https://it.euronews.com',desc:'Canale europeo in italiano',cat:'All-news / TV'},
+
+      // Quotidiani / Opinione
+      {name:'Il Post',url:'https://www.ilpost.it',desc:'Approfondimenti e attualità',cat:'Quotidiani online'},
+      {name:'Fanpage',url:'https://www.fanpage.it',desc:'Cronaca, politica, attualità',cat:'Quotidiani online'},
+      {name:'Today',url:'https://www.today.it',desc:'Attualità nazionale e locale',cat:'Quotidiani online'},
+      {name:'HuffPost Italia',url:'https://www.huffpost.it',desc:'Opinioni e attualità',cat:'Quotidiani online'},
+      {name:'TPI',url:'https://www.tpi.it',desc:'The Post Internazionale',cat:'Quotidiani online'},
+      {name:'Notizie.it',url:'https://www.notizie.it',desc:'Attualità e guide',cat:'Quotidiani online'},
+      {name:'Virgilio Notizie',url:'https://notizie.virgilio.it',desc:'Raccolta notizie e spiegazioni',cat:'Quotidiani online'},
+      {name:'Il Fatto Quotidiano',url:'https://www.ilfattoquotidiano.it',desc:'Politica e inchieste',cat:'Quotidiani online'},
+
+      // Economia & Finanza
+      {name:'Money.it',url:'https://www.money.it',desc:'Economia personale e lavoro',cat:'Economia & Finanza'},
+      {name:'QuiFinanza',url:'https://quifinanza.it',desc:'Consumi, fisco, imprese',cat:'Economia & Finanza'},
+      {name:'Wall Street Italia',url:'https://www.wallstreetitalia.com',desc:'Mercati e scenari',cat:'Economia & Finanza'},
+      {name:'Startmag',url:'https://www.startmag.it',desc:'Economia, policy, energia',cat:'Economia & Finanza'},
+      {name:'Firstonline',url:'https://www.firstonline.info',desc:'Economia e finanza',cat:'Economia & Finanza'},
+      {name:'PMI.it',url:'https://www.pmi.it',desc:'Norme, bandi e strumenti per imprese',cat:'Economia & Finanza'},
+
+      // Tecnologia / Scienza
+      {name:'Wired Italia',url:'https://www.wired.it',desc:'Innovazione, tech e cultura',cat:'Tecnologia'},
+      {name:'HDblog',url:'https://www.hdblog.it',desc:'Tecnologia e recensioni',cat:'Tecnologia'},
+      {name:'Tom’s Hardware IT',url:'https://www.tomshw.it',desc:'Tech, gaming, scienza',cat:'Tecnologia'},
+      {name:'Dday',url:'https://www.dday.it',desc:'Innovazione, audio-video e domotica',cat:'Tecnologia'},
+      {name:'SmartWorld',url:'https://smartworld.it',desc:'Casa smart, guide e novità',cat:'Tecnologia'},
+      {name:'inDomus',url:'https://www.indomus.it',desc:'News, test e consigli smart home',cat:'Tecnologia'},
+      {name:'Il Software',url:'https://www.ilsoftware.it',desc:'News, test e consigli smart home',cat:'Tecnologia'},
+      {name:'Smartdomotica',url:'https://www.smartdomotica.it',desc:'News, test e consigli smart home',cat:'Tecnologia'},
+      {name:'Focus',url:'https://www.focus.it',desc:'Scienza e curiosità',cat:'Scienza'},
+      {name:'Le Scienze',url:'https://www.lescienze.it',desc:'Scienza e curiosità',cat:'Scienza'},
+      {name:'Geopop',url:'https://www.geopop.it/news/',desc:'Scienza e curiosità',cat:'Scienza'},      
+      {name:'Notiziario INAF',url:'https://www.media.inaf.it',desc:'Istituto nazionale di astrofisica',cat:'Scienza'},
+
+      // Cultura & Spettacoli
+      {name:'Rolling Stone IT',url:'https://www.rollingstone.it',desc:'Musica, cinema, cultura pop',cat:'Cultura & Spettacoli'},
+      {name:'Rockol',url:'https://www.rockol.it',desc:'Musica e live',cat:'Cultura & Spettacoli'},
+      {name:'Artribune',url:'https://www.artribune.com',desc:'Arte e cultura visiva',cat:'Cultura & Spettacoli'},
+      {name:'Movieplayer',url:'https://www.movieplayer.it',desc:'Cinema e serie',cat:'Cultura & Spettacoli'},
+      {name:'TVBlog',url:'https://www.tvblog.it',desc:'Televisione e media',cat:'Cultura & Spettacoli'},
+
+      // Sport
+      {name:'Sky Sport',url:'https://sport.sky.it',desc:'Calcio e altri sport',cat:'Sport'},
+      {name:'Rai Sport',url:'https://www.raisport.rai.it',desc:'Sport RAI',cat:'Sport'},
+      {name:'SportMediaset',url:'https://www.sportmediaset.mediaset.it',desc:'News e video',cat:'Sport'},
+      {name:'Eurosport IT',url:'https://www.eurosport.it',desc:'Risultati e notizie',cat:'Sport'},
+      {name:'TuttoMercatoWeb',url:'https://www.tuttomercatoweb.com',desc:'Calciomercato in tempo reale',cat:'Sport'},
+      {name:'Calciomercato.com',url:'https://www.calciomercato.com',desc:'News, mercato e analisi',cat:'Sport'},
+      {name:'OA Sport',url:'https://www.oasport.it',desc:'Olimpici e multisport',cat:'Sport'},
+
+      // Fact-checking
+      {name:'FACTA',url:'https://www.facta.news',desc:'Debunking e verifiche',cat:'Fact-checking'},
+      {name:'Open',url:'https://www.open.online',desc:'Notizie e fact-checking',cat:'Fact-checking'},
+      {name:'Pagellapolitica',url:'https://www.pagellapolitica.it',desc:'Debunking e verifiche',cat:'Fact-checking'},
+
+      // Geopolitica
+      {name:'L`INDIPENDENTE',url:'https://lindipendente.online',desc:'Geopolitica',cat:'Geopolitica'},
+      {name:'INTERNAZIONALE',url:'https://www.internazionale.it',desc:'Geopolitica',cat:'Geopolitica'},
+      {name:'Geopolitica.info',url:'https://www.Geopolitica.info',desc:'Geopolitica',cat:'Geopolitica'},
+
+      // Energia & Ambiente
+      {name:'QualEnergia',url:'https://www.qualenergia.it',desc:'Efficienza energetica e rinnovabili',cat:'Energia & Ambiente'},
+      {name:'e-gazette',url:'https://e-gazette.it',desc:'Ambiente, utility, policy',cat:'Energia & Ambiente'},
+      {name:'Rinnovabili.it',url:'https://www.rinnovabili.it',desc:'Rinnovabili, mobilità e clima',cat:'Energia & Ambiente'},
+
+      // Cyber / Crypto / GDO
+      {name:'Cybersecurity 360',url:'https://www.cybersecurity360.it',desc:'Sicurezza informatica',cat:'Cybersecurity'},
+      {name:'Security Info',url:'https://www.securityinfo.it',desc:'Vulnerabilità, malware',cat:'Cybersecurity'},
+      {name:'Red Hot Cyber',url:'https://www.redhotcyber.com',desc:'Notizie e analisi cyber',cat:'Cybersecurity'},
+      {name:'CSIRT Italia',url:'https://www.csirt.gov.it',desc:'Bollettini istituzionali',cat:'Cybersecurity'},
+
+      {name:'Cointelegraph Italia',url:'https://it.cointelegraph.com',desc:'Bitcoin, altcoin, Web3',cat:'Criptovalute'},
+      {name:'Criptovaluta.it',url:'https://www.criptovaluta.it',desc:'Notizie, guide e analisi',cat:'Criptovalute'},
+      {name:'The Cryptonomist (IT)',url:'https://www.thecryptonomist.ch/it',desc:'Mercati, NFT e DeFi',cat:'Criptovalute'},
+
+      {name:'GDOnews',url:'https://www.gdonews.it',desc:'Dati e trend retail',cat:'GDO'},
+      {name:'Gdoweek',url:'https://www.gdoweek.it',desc:'Distribuzione moderna',cat:'GDO'},
+      {name:'Mark Up',url:'https://www.mark-up.it',desc:'Marketing e largo consumo',cat:'GDO'},
+      {name:'Largo Consumo',url:'https://www.largoconsumo.info',desc:'Osservatorio consumo',cat:'GDO'},
+      {name:'Distribuzione Moderna',url:'https://www.distribuzionemoderna.info',desc:'Dossier retail',cat:'GDO'},
+      {name:'Ferrutensil',url:'https://www.ferrutensil.com',desc:'Utensili e ferramenta',cat:'GDO'},
+      {name:'iFerr Online',url:'https://www.iferronline.com',desc:'Canale ferramenta',cat:'GDO'},
+
+      // Locali (unica categoria) + sotto-categorie
+      {name:'RomaToday',url:'https://www.romatoday.it',desc:'Cronaca Roma',cat:'Locali',sub:'Roma & Lazio'},
+      {name:'Il Corriere della Città',url:'https://www.ilcorrieredellacitta.com',desc:'Roma e provincia',cat:'Locali',sub:'Roma & Lazio'},
+      {name:'RomaH24',url:'https://romah24.com',desc:'Quartieri di Roma',cat:'Locali',sub:'Roma & Lazio'},
+      {name:'Abitare A Roma',url:'https://abitarearoma.it',desc:'Municipi V e VI',cat:'Locali',sub:'Roma & Lazio'},
+      {name:'Tiburno TV',url:'https://www.tiburno.tv',desc:'Tivoli e Guidonia',cat:'Locali',sub:'Roma & Lazio'},
+
+      {name:'FoggiaToday',url:'https://www.foggiatoday.it',desc:'Cronaca e attualità Foggia',cat:'Locali',sub:'Puglia'},
+      {name:"L'Immediato",url:'https://www.immediato.net',desc:'Inchieste sulla Capitanata',cat:'Locali',sub:'Puglia'},
+      {name:'Gargano TV',url:'https://www.garganotv.com',desc:'Notizie video',cat:'Locali',sub:'Puglia'},
+      {name:'SGR News',url:'https://sangiovannirotondofree.it',desc:'Notizie San Giovanni Rotondo',cat:'Locali',sub:'Puglia'},
+      {name:'La gazzetta del mezzogiorno',url:'https://www.Lagazzettadelmezzogiorno.it',desc:'Cronaca locale',cat:'Locali',sub:'Puglia'},
+    ];
+
+    // Pinned “Preferiti” (duplice presenza logica)
+    const PINNED = ['ANSA','AGI','Open','RaiNews','Sky TG24','TG LA7','Il Post','Fanpage','Il Fatto Quotidiano'];
+
+    // ===== UI refs =====
+    const chipsEl=document.getElementById('chips');
+    const subchipsEl=document.getElementById('subchips');
+    const contentEl=document.getElementById('content');
+    const container=document.getElementById('container');
+    const toolbar=document.getElementById('toolbar');
+    const uiToggle=document.getElementById('uiToggle');
+
+    const presetSel=document.getElementById('presetSel');
+    const fontSel=document.getElementById('fontSel');
+    const sizeSel=document.getElementById('sizeSel');
+    const unitSel=document.getElementById('unitSel');
+    const scaleSel=document.getElementById('scaleSel');
+    const burnInEl=document.getElementById('burnIn');
+    const densitySel=document.getElementById('densitySel');
+
+    // Stato
+    let activeCat='Tutte';
+    let activeSub='Tutte';
+    let shiftTimer=null, tick=0;
+
+    // ===== Preferenze tipografia =====
+    function pxFrom(size, unit){ size=Number(size)||16; return unit==='pt'? size*(96/72) : size; }
+    function applyPrefs(){
+      const unit=unitSel.value, base=Number(sizeSel.value)||16, scale=(Number(scaleSel.value)||100)/100;
+      const finalSize=Math.round((base*scale+Number.EPSILON)*100)/100;
+      document.documentElement.style.setProperty('--ff', FONT_STACKS[fontSel.value]||FONT_STACKS.system);
+      document.documentElement.style.setProperty('--fs', finalSize+unit);
+      const px=pxFrom(finalSize,unit); const lh=px>=20?1.5:px>=18?1.45:1.4;
+      document.documentElement.style.setProperty('--lh', lh);
+      const pad=densitySel.value==='compact'?12:densitySel.value==='cozy'?18:14;
+      document.querySelectorAll('.card').forEach(c=>c.style.padding=pad+'px');
+      if(burnInEl.checked) startShift(); else stopShift();
+    }
+    function savePrefs(){ localStorage.setItem('prefs', JSON.stringify({
+      preset:presetSel.value,font:fontSel.value,size:sizeSel.value,unit:unitSel.value,scale:scaleSel.value,
+      burnIn:burnInEl.checked,density:densitySel.value,showUI:uiToggle.checked
+    })); }
+    function loadPrefs(){ try{
+      const p=JSON.parse(localStorage.getItem('prefs')||'{}');
+      if(p.preset) presetSel.value=p.preset; if(p.font) fontSel.value=p.font;
+      if(p.size) sizeSel.value=p.size; if(p.unit) unitSel.value=p.unit;
+      if(p.scale) scaleSel.value=p.scale; if(typeof p.burnIn==='boolean') burnInEl.checked=p.burnIn;
+      if(p.density) densitySel.value=p.density; if(typeof p.showUI==='boolean') uiToggle.checked=p.showUI;
+    }catch{} applyPrefs(); applyUIVisibility(); }
+
+    function applyPreset(key){ const p=PRESETS[key]; if(!p) return;
+      fontSel.value=p.font; sizeSel.value=p.size; densitySel.value=p.density||'normal';
+      applyPrefs(); savePrefs(); }
+
+    // Anti burn-in
+    function startShift(){ if(shiftTimer) return; shiftTimer=setInterval(()=>{ tick=(tick+1)%4; const dx=(tick===1?1:(tick===3?-1:0)), dy=(tick===2?1:0); container.style.transform=`translate(${dx}px,${dy}px)`; },60000); }
+    function stopShift(){ clearInterval(shiftTimer); shiftTimer=null; tick=0; container.style.transform='translate(0,0)'; }
+
+    // ===== Dati riorganizzati =====
+    const DATA = RAW.map(x=> PINNED.includes(x.name) ? [{...x,cat:'Preferiti'},x] : [x]).flat();
+
+    const CATEGORY_ORDER = ['Preferiti','All-news / TV','Quotidiani online','Fact-checking','Geopolitica','Economia & Finanza','Tecnologia','Scienza','Cultura & Spettacoli','Sport','Energia & Ambiente','Cybersecurity','Criptovalute','GDO','Locali'];
+
+    function categories(){
+      const cats=[...new Set(DATA.map(d=>d.cat))];
+      const known=new Set(CATEGORY_ORDER);
+      const others=cats.filter(c=>!known.has(c)).sort();
+      return CATEGORY_ORDER.filter(c=>cats.includes(c)).concat(others);
+    }
+
+    // ===== Chips principali + subchips Locali =====
+    function renderChips(){
+      chipsEl.innerHTML='';
+      const cats=categories();
+      chipsEl.appendChild(chip(`Tutte (${DATA.length})`,()=>{activeCat='Tutte'; activeSub='Tutte'; render();},activeCat==='Tutte'));
+      cats.forEach(cat=>{
+        const n=DATA.filter(d=>d.cat===cat).length;
+        chipsEl.appendChild(chip(`${cat} (${n})`,()=>{activeCat=(activeCat===cat?'Tutte':cat); activeSub='Tutte'; render();},activeCat===cat));
+      });
+      renderSubchips();
+    }
+
+    function renderSubchips(){
+      if(activeCat!=='Locali' || !uiToggle.checked){ subchipsEl.style.display='none'; subchipsEl.innerHTML=''; return; }
+      const subs=[...new Set(DATA.filter(d=>d.cat==='Locali').map(d=>d.sub||'Altro'))].sort();
+      subchipsEl.style.display='flex';
+      subchipsEl.innerHTML='';
+      subchipsEl.appendChild(chip(`Tutte Locali`,()=>{activeSub='Tutte'; render();},activeSub==='Tutte'));
+      subs.forEach(s=>{
+        const n=DATA.filter(d=>d.cat==='Locali' && (d.sub||'Altro')===s).length;
+        subchipsEl.appendChild(chip(`${s} (${n})`,()=>{activeSub=(activeSub===s?'Tutte':s); render();},activeSub===s));
+      });
+    }
+
+    function chip(label,onClick,active=false){
+      const b=document.createElement('button'); b.className='chip'+(active?' active':''); b.textContent=label; b.onclick=onClick; return b;
+    }
+
+    // ===== Visibilità UI =====
+    function applyUIVisibility(){
+      const show=uiToggle.checked;
+      toolbar.style.display = show ? 'grid' : 'none';
+      chipsEl.style.display = show ? 'flex' : 'none';
+      if(show){ renderSubchips(); } else { subchipsEl.style.display='none'; }
+    }
+
+    // ===== Render =====
+    function render(){
+      contentEl.innerHTML='';
+      const cats = activeCat==='Tutte' ? categories() : [activeCat];
+
+      cats.forEach(cat=>{
+        let items = DATA.filter(d=>d.cat===cat);
+        if(cat==='Locali' && activeSub!=='Tutte'){ items = items.filter(d=>(d.sub||'Altro')===activeSub); }
+        if(!items.length) return;
+
+        if(cat==='Locali'){
+          const bySub={}; items.forEach(it=>{ const k=it.sub||'Altro'; (bySub[k] ||= []).push(it); });
+          const order=Object.keys(bySub).sort((a,b)=>a.localeCompare(b,'it'));
+          order.forEach(sub=>{
+            const sec=document.createElement('section'); sec.innerHTML=`<h2>${cat} — ${sub}</h2>`;
+            const grid=document.createElement('div'); grid.className='grid';
+            bySub[sub].sort((a,b)=>a.name.localeCompare(b.name,'it')).forEach(it=>{
+              const c=document.createElement('div'); c.className='card';
+              c.innerHTML=`<h3><a href="${it.url}" target="_blank" rel="noopener">${it.name}</a></h3><p>${it.desc}</p>`;
+              grid.appendChild(c);
+            });
+            sec.appendChild(grid); contentEl.appendChild(sec);
+          });
+        } else {
+          const sec=document.createElement('section'); sec.innerHTML=`<h2>${cat}</h2>`;
+          const grid=document.createElement('div'); grid.className='grid';
+          items.sort((a,b)=>cat==='Prime scelte' ? (PINNED.indexOf(a.name)-PINNED.indexOf(b.name)) : a.name.localeCompare(b.name,'it'))
+               .forEach(it=>{
+                 const c=document.createElement('div'); c.className='card';
+                 c.innerHTML=`<h3><a href="${it.url}" target="_blank" rel="noopener">${it.name}</a></h3><p>${it.desc}</p>`;
+                 grid.appendChild(c);
+               });
+          sec.appendChild(grid); contentEl.appendChild(sec);
+        }
+      });
+
+      applyPrefs();
+      renderSubchips();
+      applyUIVisibility();
+    }
+
+    // ===== Eventi UI =====
+    presetSel.addEventListener('change',()=>{ if(presetSel.value==='none'){savePrefs();return;} applyPreset(presetSel.value); });
+    fontSel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
+    sizeSel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
+    unitSel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
+    scaleSel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
+    densitySel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
+    burnInEl.addEventListener('change',()=>{ savePrefs(); applyPrefs(); });
+    uiToggle.addEventListener('change',()=>{ applyUIVisibility(); savePrefs(); });
+
+    // Scorciatoia tastiera per mostra/nascondi UI (U)
+    document.addEventListener('keydown',(e)=>{ if(e.key.toLowerCase()==='u'){ uiToggle.checked=!uiToggle.checked; applyUIVisibility(); savePrefs(); } });
+
+    // ===== Avvio =====
+    renderChips(); render(); loadPrefs(); if(presetSel.value!=='none') applyPreset(presetSel.value);
+  </script>
 </body>
 </html>
