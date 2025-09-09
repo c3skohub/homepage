@@ -87,7 +87,7 @@
     <div class="toggles">
       <div class="toggle"><label for="tgFilters">Filtri</label><input id="tgFilters" type="checkbox" checked></div>
       <div class="toggle"><label for="tgAdd">Tasto “Aggiungi”</label><input id="tgAdd" type="checkbox" checked></div>
-      <div class="toggle"><label for="tgHideActions">Nascondi icone</label><input id="tgHideActions" type="checkbox"></div>
+      <div class="toggle"><label for="tgHideActions">Mostra icone</label><input id="tgHideActions" type="checkbox" checked></div>
     </div>
   </header>
 
@@ -455,7 +455,7 @@
       if(!tgFilters.checked){ subchipsEl.style.display='none'; }
       addBtn.style.display = tgAdd.checked ? 'inline-block' : 'none';
       if(!tgAdd.checked){ importBar.style.display='none'; }
-      document.body.classList.toggle('hide-actions', tgHideActions.checked);
+      document.body.classList.toggle('hide-actions', !tgHideActions.checked);
     }
 
     // ===== Preferiti / Rimozione / Modifica =====
@@ -644,4 +644,3 @@
   </script>
 </body>
 </html>
-
