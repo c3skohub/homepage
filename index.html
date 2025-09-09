@@ -3,35 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Directory testate italiane – AMOLED v1.2</title>
+  <title>c3skoLINKS v.028</title>
   <meta name="color-scheme" content="dark" />
   <style>
     :root{
       --bg:#000; --card:#0a0a0a; --ring:#1a1a1a; --text:#e6e6e6; --muted:#a3a3a3;
       --accent:#1c9895; --accent-strong:#c7fc54; --ff:system-ui,sans-serif; --fs:16px; --lh:1.4;
+      --ok:#52d273; --warn:#f5c451; --err:#f87171;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0;background:var(--bg);color:var(--text);font-family:var(--ff);font-size:var(--fs);line-height:var(--lh)}
-    header{text-align:center;padding:24px 16px 4px}
+    header{text-align:center;padding:24px 16px 8px}
     header h1{margin:0 0 6px;font-size:clamp(1.35rem,2.5vw,1.9rem)}
     header p{margin:0;color:var(--muted)}
     .container{max-width:1060px;margin:0 auto;padding:16px;will-change:transform}
+
+    .toggles{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0 2px}
+    .toggle{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--ring);border-radius:12px;padding:8px 10px}
+    .toggle input{width:34px;height:20px;appearance:none;border-radius:999px;background:#111;outline:1px solid var(--ring);position:relative}
+    .toggle input:checked{background:#0b2a30;outline-color:var(--accent-strong)}
+    .toggle input:after{content:"";position:absolute;inset:3px;width:14px;height:14px;border-radius:50%;
+      background:#6b7280;transform:translateX(0);transition:transform .18s ease}
+    .toggle input:checked:after{background:var(--accent);transform:translateX(14px)}
+    .toggle label{color:var(--muted);font-size:.92em}
 
     .toolbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,auto));
       gap:10px;margin:14px 0;align-items:center}
     .control{display:flex;align-items:center;gap:8px;background:var(--card);
       border:1px solid var(--ring);border-radius:12px;padding:8px 10px}
     .control label{color:var(--muted);font-size:.92em}
-    .control select{appearance:none;background:transparent;border:none;color:var(--text);outline:none;font-size:1em}
-
-    .toggle{display:flex;align-items:center;gap:8px;background:var(--card);
-      border:1px solid var(--ring);border-radius:12px;padding:8px 10px}
-    .toggle input,#uiToggle{width:34px;height:20px;appearance:none;border-radius:999px;background:#111;outline:1px solid var(--ring);position:relative}
-    .toggle input:checked,#uiToggle:checked{background:#0b2a30;outline-color:var(--accent-strong)}
-    .toggle input:after,#uiToggle:after{content:"";position:absolute;inset:3px;width:14px;height:14px;border-radius:50%;
-      background:#6b7280;transform:translateX(0);transition:transform .18s ease}
-    .toggle input:checked:after,#uiToggle:checked:after{background:var(--accent);transform:translateX(14px)}
+    .control select,.control input[type="text"]{appearance:none;background:transparent;border:none;color:var(--text);outline:none;font-size:1em}
 
     .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
     .chips.sub{margin-top:-6px}
@@ -41,23 +43,51 @@
     section{margin:22px 0}
     section h2{margin:10px 2px 8px;font-size:1.15rem;color:var(--accent)}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-    .card{background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:6px}
+    .card{position:relative;background:var(--card);border:1px solid var(--ring);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:6px}
     .card h3{margin:0;font-weight:700;font-size:clamp(1.2rem,2.8vw,1.45rem)}
-    .card h3 a{color:#a3bc85;text-decoration:none}
+    .card h3 a{color:#a3bc85;text-decoration:none;position:relative;z-index:1}
     .card h3 a:hover,.card h3 a:focus{outline:0;text-decoration:underline}
     .card p{margin:0;color:var(--muted);font-size:.97rem}
+
+    .actions{position:absolute;top:8px;right:8px;display:flex;gap:6px;z-index:2}
+    .icon-btn{cursor:pointer;background:#0a0a0a;border:1px solid var(--ring);color:#ddd;border-radius:10px;padding:4px 8px;font-size:.95rem;line-height:1}
+    .icon-btn:hover{outline:1px solid var(--accent)}
+    .star.on{color:#ffd34d; border-color:#5a4a22}
+    .trash{color:#f2b2b2; border-color:#4a2222}
+    .edit{color:#b2d3f2; border-color:#22445a}
+    .hide-actions .actions{ display:none !important; }
+
+    .import-bar{display:none;grid-template-columns:1.1fr 0.9fr 1.1fr 0.9fr auto auto;gap:8px;margin:12px 0}
+    .import-bar input{width:100%;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:10px;padding:10px;color:var(--text)}
+    .import-actions{display:flex;gap:8px}
+    .btn{cursor:pointer;background:#0a0a0a;border:1px solid var(--ring);color:var(--text);border-radius:10px;padding:10px 12px}
+    .btn:hover{outline:1px solid var(--accent)}
+    .btn.ok{border-color:#224a36}
+
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px}
+    .modal{width:min(560px,96%);background:#0a0a0a;border:1px solid var(--ring);border-radius:14px;padding:14px}
+    .modal h3{margin:0 0 8px;font-size:1.1rem;color:var(--accent)}
+    .modal .row{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
+    .modal input{width:100%;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:10px;padding:10px;color:var(--text)}
+    .modal .actions{position:static;justify-content:flex-end;display:flex;gap:8px}
+
+    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;min-width:240px;max-width:90%;
+      background:#0a0a0a;border:1px solid var(--ring);color:var(--text);padding:10px 14px;border-radius:12px;display:none}
+    .toast.ok{border-color:#1c3b2d} .toast.warn{border-color:#463818} .toast.err{border-color:#4a2222}
+    .toast b{color:var(--accent-strong)}
     footer{text-align:center;color:var(--muted);padding:18px;font-size:.9rem}
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&family=Lato:wght@400;700&family=Montserrat:wght@500;700&family=Merriweather:wght@400;700&family=Source+Sans+3:wght@400;600&family=Cardo:wght@400;700&family=Lora:wght@400;600&family=Playfair+Display:wght@500;700&family=Oswald:wght@400;600&family=Ubuntu:wght@400;500&family=Inconsolata:wght@400;600&family=Noto+Sans:wght@400;600&family=Noto+Serif:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>Menu</h1>
-    <p></p>
-    <!-- Toggle visibilità filtri/menu -->
-    <div class="control" style="margin:10px auto;width:max-content">
-      <label for="uiToggle">Filtri</label>
-      <input id="uiToggle" type="checkbox" checked />
+    <h1>c3skoLINKS</h1>
+    <p>”</p>
+
+    <div class="toggles">
+      <div class="toggle"><label for="tgFilters">Filtri</label><input id="tgFilters" type="checkbox" checked></div>
+      <div class="toggle"><label for="tgAdd">Tasto “Aggiungi”</label><input id="tgAdd" type="checkbox" checked></div>
+      <div class="toggle"><label for="tgHideActions">Nascondi icone</label><input id="tgHideActions" type="checkbox"></div>
     </div>
   </header>
 
@@ -106,8 +136,18 @@
       <div class="control"><label for="densitySel">Densità</label>
         <select id="densitySel"><option value="compact">Compatta</option><option value="normal" selected>Normale</option><option value="cozy">Aria</option></select>
       </div>
-      <div class="toggle" title="Micro-spostamento periodico per ridurre burn-in">
-        <label for="burnIn">AMOLED+</label><input id="burnIn" type="checkbox" checked />
+
+      <button id="addBtn" class="btn ok" title="Aggiungi link" type="button">+ Aggiungi</button>
+    </div>
+
+    <div id="importBar" class="import-bar">
+      <input id="impUrl"   type="text" placeholder="Link (https://...)" autocomplete="off">
+      <input id="impTitle" type="text" placeholder="Titolo (es. inDomus)">
+      <input id="impDesc"  type="text" placeholder="Descrizione (es. cronaca, tecnologia)">
+      <input id="impCat"   type="text" placeholder="Categoria (es. Tecnologia)">
+      <div class="import-actions">
+        <button id="impAdd" class="btn ok" type="button">Aggiungi</button>
+        <button id="impHide" class="btn" type="button">Chiudi</button>
       </div>
     </div>
 
@@ -116,30 +156,45 @@
     <div id="content"></div>
   </div>
 
-  <footer>Ultimo aggiornamento: settembre 2025</footer>
+  <div id="overlay" class="overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+      <h3 id="editTitle">Modifica link</h3>
+      <div class="row">
+        <input id="edTitle" type="text" placeholder="Titolo">
+        <input id="edDesc"  type="text" placeholder="Descrizione">
+        <input id="edCat"   type="text" placeholder="Categoria">
+        <input id="edUrl"   type="text" placeholder="URL (non modificabile)" disabled>
+      </div>
+      <div class="actions">
+        <button id="edSave" class="btn ok" type="button">Salva</button>
+        <button id="edCancel" class="btn" type="button">Annulla</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <footer>c3skoLINKS v.028 agg.25/09</footer>
 
   <script>
-    // ===== Config font e preset =====
+    // ===== Font & preset =====
     const FONT_STACKS={ system:'system-ui, sans-serif', sans:'Arial, Helvetica, Noto Sans, sans-serif', serif:'Georgia, Times New Roman, serif', mono:'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace', readable:'Verdana, Tahoma, Geneva, sans-serif', openSans:'"Open Sans", sans-serif', roboto:'Roboto, sans-serif', lato:'Lato, sans-serif', montserrat:'Montserrat, sans-serif', merriweather:'Merriweather, serif', sourceSans:'"Source Sans 3", "Source Sans Pro", sans-serif', cardo:'Cardo, serif', lora:'Lora, serif', playfair:'"Playfair Display", serif', oswald:'Oswald, sans-serif', ubuntu:'Ubuntu, sans-serif', inconsolata:'Inconsolata, monospace', notoSans:'Noto Sans, sans-serif', notoSerif:'Noto Serif, serif' };
     const PRESETS={ elegante:{font:'playfair', size:18, density:'cozy'}, tecnico:{font:'inconsolata', size:16, density:'compact'}, leggibile:{font:'openSans', size:20, density:'cozy'}, moderno:{font:'montserrat', size:18, density:'normal'}, classico:{font:'merriweather', size:18, density:'cozy'}, android:{font:'roboto', size:16, density:'normal'} };
 
-    // ===== Dataset =====
+    // ===== Dataset base =====
     const RAW = [
-      // Agenzie
       {name:'ANSA',url:'https://www.ansa.it',desc:'Prima agenzia italiana, notizie h24',cat:'Agenzie'},
       {name:'AGI',url:'https://www.agi.it',desc:'Agenzia Giornalistica Italia',cat:'Agenzie'},
       {name:'Adnkronos',url:'https://www.adnkronos.com/it',desc:'Agenzia di stampa',cat:'Agenzie'},
       {name:'LaPresse',url:'https://www.lapresse.it',desc:'Agenzia – cronaca, politica, sport',cat:'Agenzie'},
       {name:'askanews',url:'https://www.askanews.it',desc:'Agenzia multimediale',cat:'Agenzie'},
 
-      // All-news / TV
       {name:'RaiNews',url:'https://www.rainews.it',desc:'All-news RAI',cat:'All-news / TV'},
       {name:'TGCOM24',url:'https://www.tgcom24.mediaset.it',desc:'All-news Mediaset',cat:'All-news / TV'},
       {name:'Sky TG24',url:'https://tg24.sky.it',desc:'All-news Sky Italia',cat:'All-news / TV'},
       {name:'TG LA7',url:'https://www.tg.la7.it',desc:'All-news La7',cat:'All-news / TV'},
       {name:'Euronews (IT)',url:'https://it.euronews.com',desc:'Canale europeo in italiano',cat:'All-news / TV'},
 
-      // Quotidiani / Opinione
       {name:'Il Post',url:'https://www.ilpost.it',desc:'Approfondimenti e attualità',cat:'Quotidiani online'},
       {name:'Fanpage',url:'https://www.fanpage.it',desc:'Cronaca, politica, attualità',cat:'Quotidiani online'},
       {name:'Today',url:'https://www.today.it',desc:'Attualità nazionale e locale',cat:'Quotidiani online'},
@@ -149,36 +204,26 @@
       {name:'Virgilio Notizie',url:'https://notizie.virgilio.it',desc:'Raccolta notizie e spiegazioni',cat:'Quotidiani online'},
       {name:'Il Fatto Quotidiano',url:'https://www.ilfattoquotidiano.it',desc:'Politica e inchieste',cat:'Quotidiani online'},
 
-      // Economia & Finanza
-      {name:'Money.it',url:'https://www.money.it',desc:'Economia personale e lavoro',cat:'Economia & Finanza'},
-      {name:'QuiFinanza',url:'https://quifinanza.it',desc:'Consumi, fisco, imprese',cat:'Economia & Finanza'},
-      {name:'Wall Street Italia',url:'https://www.wallstreetitalia.com',desc:'Mercati e scenari',cat:'Economia & Finanza'},
-      {name:'Startmag',url:'https://www.startmag.it',desc:'Economia, policy, energia',cat:'Economia & Finanza'},
-      {name:'Firstonline',url:'https://www.firstonline.info',desc:'Economia e finanza',cat:'Economia & Finanza'},
-      {name:'PMI.it',url:'https://www.pmi.it',desc:'Norme, bandi e strumenti per imprese',cat:'Economia & Finanza'},
-
-      // Tecnologia / Scienza
       {name:'Wired Italia',url:'https://www.wired.it',desc:'Innovazione, tech e cultura',cat:'Tecnologia'},
       {name:'HDblog',url:'https://www.hdblog.it',desc:'Tecnologia e recensioni',cat:'Tecnologia'},
       {name:'Tom’s Hardware IT',url:'https://www.tomshw.it',desc:'Tech, gaming, scienza',cat:'Tecnologia'},
       {name:'Dday',url:'https://www.dday.it',desc:'Innovazione, audio-video e domotica',cat:'Tecnologia'},
       {name:'SmartWorld',url:'https://smartworld.it',desc:'Casa smart, guide e novità',cat:'Tecnologia'},
-      {name:'inDomus',url:'https://www.indomus.it',desc:'News, test e consigli smart home',cat:'Tecnologia'},
-      {name:'Il Software',url:'https://www.ilsoftware.it',desc:'News, test e consigli smart home',cat:'Tecnologia'},
-      {name:'Smartdomotica',url:'https://www.smartdomotica.it',desc:'News, test e consigli smart home',cat:'Tecnologia'},
+      {name:'inDomus',url:'https://www.indomus.it',desc:'Smart home e domotica personale',cat:'Tecnologia'},
+      {name:'Il Software',url:'https://www.ilsoftware.it',desc:'Sistemi e applicativi',cat:'Tecnologia'},
+      {name:'Smartdomotica',url:'https://www.smartdomotica.it',desc:'Guide e recensioni smart home',cat:'Tecnologia'},
+
       {name:'Focus',url:'https://www.focus.it',desc:'Scienza e curiosità',cat:'Scienza'},
-      {name:'Le Scienze',url:'https://www.lescienze.it',desc:'Scienza e curiosità',cat:'Scienza'},
-      {name:'Geopop',url:'https://www.geopop.it/news/',desc:'Scienza e curiosità',cat:'Scienza'},      
+      {name:'Le Scienze',url:'https://www.lescienze.it',desc:'Attualità scientifica',cat:'Scienza'},
+      {name:'Geopop',url:'https://www.geopop.it/news/',desc:'Divulgazione scientifica',cat:'Scienza'},
       {name:'Notiziario INAF',url:'https://www.media.inaf.it',desc:'Istituto nazionale di astrofisica',cat:'Scienza'},
 
-      // Cultura & Spettacoli
       {name:'Rolling Stone IT',url:'https://www.rollingstone.it',desc:'Musica, cinema, cultura pop',cat:'Cultura & Spettacoli'},
       {name:'Rockol',url:'https://www.rockol.it',desc:'Musica e live',cat:'Cultura & Spettacoli'},
       {name:'Artribune',url:'https://www.artribune.com',desc:'Arte e cultura visiva',cat:'Cultura & Spettacoli'},
       {name:'Movieplayer',url:'https://www.movieplayer.it',desc:'Cinema e serie',cat:'Cultura & Spettacoli'},
       {name:'TVBlog',url:'https://www.tvblog.it',desc:'Televisione e media',cat:'Cultura & Spettacoli'},
 
-      // Sport
       {name:'Sky Sport',url:'https://sport.sky.it',desc:'Calcio e altri sport',cat:'Sport'},
       {name:'Rai Sport',url:'https://www.raisport.rai.it',desc:'Sport RAI',cat:'Sport'},
       {name:'SportMediaset',url:'https://www.sportmediaset.mediaset.it',desc:'News e video',cat:'Sport'},
@@ -187,22 +232,18 @@
       {name:'Calciomercato.com',url:'https://www.calciomercato.com',desc:'News, mercato e analisi',cat:'Sport'},
       {name:'OA Sport',url:'https://www.oasport.it',desc:'Olimpici e multisport',cat:'Sport'},
 
-      // Fact-checking
-      {name:'FACTA',url:'https://www.facta.news',desc:'Debunking e verifiche',cat:'Fact-checking'},
+      {name:'FACTA',url:'https://facta.news',desc:'Debunking e verifiche',cat:'Fact-checking'},
       {name:'Open',url:'https://www.open.online',desc:'Notizie e fact-checking',cat:'Fact-checking'},
-      {name:'Pagellapolitica',url:'https://www.pagellapolitica.it',desc:'Debunking e verifiche',cat:'Fact-checking'},
+      {name:'Pagella Politica',url:'https://pagellapolitica.it',desc:'Verifica dichiarazioni e dati',cat:'Fact-checking'},
 
-      // Geopolitica
-      {name:'L`INDIPENDENTE',url:'https://lindipendente.online',desc:'Geopolitica',cat:'Geopolitica'},
-      {name:'INTERNAZIONALE',url:'https://www.internazionale.it',desc:'Geopolitica',cat:'Geopolitica'},
-      {name:'Geopolitica.info',url:'https://www.Geopolitica.info',desc:'Geopolitica',cat:'Geopolitica'},
+      {name:"L'Indipendente",url:'https://lindipendente.online',desc:'Analisi e attualità',cat:'Geopolitica'},
+      {name:'Internazionale',url:'https://www.internazionale.it',desc:'Mondo e attualità',cat:'Geopolitica'},
+      {name:'Geopolitica.info',url:'https://www.geopolitica.info',desc:'Approfondimenti di politica estera',cat:'Geopolitica'},
 
-      // Energia & Ambiente
       {name:'QualEnergia',url:'https://www.qualenergia.it',desc:'Efficienza energetica e rinnovabili',cat:'Energia & Ambiente'},
       {name:'e-gazette',url:'https://e-gazette.it',desc:'Ambiente, utility, policy',cat:'Energia & Ambiente'},
       {name:'Rinnovabili.it',url:'https://www.rinnovabili.it',desc:'Rinnovabili, mobilità e clima',cat:'Energia & Ambiente'},
 
-      // Cyber / Crypto / GDO
       {name:'Cybersecurity 360',url:'https://www.cybersecurity360.it',desc:'Sicurezza informatica',cat:'Cybersecurity'},
       {name:'Security Info',url:'https://www.securityinfo.it',desc:'Vulnerabilità, malware',cat:'Cybersecurity'},
       {name:'Red Hot Cyber',url:'https://www.redhotcyber.com',desc:'Notizie e analisi cyber',cat:'Cybersecurity'},
@@ -220,7 +261,6 @@
       {name:'Ferrutensil',url:'https://www.ferrutensil.com',desc:'Utensili e ferramenta',cat:'GDO'},
       {name:'iFerr Online',url:'https://www.iferronline.com',desc:'Canale ferramenta',cat:'GDO'},
 
-      // Locali (unica categoria) + sotto-categorie
       {name:'RomaToday',url:'https://www.romatoday.it',desc:'Cronaca Roma',cat:'Locali',sub:'Roma & Lazio'},
       {name:'Il Corriere della Città',url:'https://www.ilcorrieredellacitta.com',desc:'Roma e provincia',cat:'Locali',sub:'Roma & Lazio'},
       {name:'RomaH24',url:'https://romah24.com',desc:'Quartieri di Roma',cat:'Locali',sub:'Roma & Lazio'},
@@ -231,11 +271,10 @@
       {name:"L'Immediato",url:'https://www.immediato.net',desc:'Inchieste sulla Capitanata',cat:'Locali',sub:'Puglia'},
       {name:'Gargano TV',url:'https://www.garganotv.com',desc:'Notizie video',cat:'Locali',sub:'Puglia'},
       {name:'SGR News',url:'https://sangiovannirotondofree.it',desc:'Notizie San Giovanni Rotondo',cat:'Locali',sub:'Puglia'},
-      {name:'La gazzetta del mezzogiorno',url:'https://www.Lagazzettadelmezzogiorno.it',desc:'Cronaca locale',cat:'Locali',sub:'Puglia'},
+      {name:'La Gazzetta del Mezzogiorno',url:'https://www.lagazzettadelmezzogiorno.it',desc:'Cronaca locale',cat:'Locali',sub:'Puglia'}
     ];
 
-    // Pinned “Preferiti” (duplice presenza logica)
-    const PINNED = ['ANSA','AGI','Open','RaiNews','Sky TG24','TG LA7','Il Post','Fanpage','Il Fatto Quotidiano'];
+    const PINNED_BASE = ['ANSA','AGI','Open','RaiNews','Sky TG24','TG LA7','Il Post','Fanpage','Il Fatto Quotidiano'];
 
     // ===== UI refs =====
     const chipsEl=document.getElementById('chips');
@@ -243,22 +282,79 @@
     const contentEl=document.getElementById('content');
     const container=document.getElementById('container');
     const toolbar=document.getElementById('toolbar');
-    const uiToggle=document.getElementById('uiToggle');
-
     const presetSel=document.getElementById('presetSel');
     const fontSel=document.getElementById('fontSel');
     const sizeSel=document.getElementById('sizeSel');
     const unitSel=document.getElementById('unitSel');
     const scaleSel=document.getElementById('scaleSel');
-    const burnInEl=document.getElementById('burnIn');
     const densitySel=document.getElementById('densitySel');
 
-    // Stato
+    const tgFilters=document.getElementById('tgFilters');
+    const tgAdd=document.getElementById('tgAdd');
+    const tgHideActions=document.getElementById('tgHideActions');
+
+    const addBtn=document.getElementById('addBtn');
+    const importBar=document.getElementById('importBar');
+    const impUrl=document.getElementById('impUrl');
+    const impTitle=document.getElementById('impTitle');
+    const impDesc=document.getElementById('impDesc');
+    const impCat=document.getElementById('impCat');
+    const impAdd=document.getElementById('impAdd');
+    const impHide=document.getElementById('impHide');
+
+    const overlay=document.getElementById('overlay');
+    const edTitle=document.getElementById('edTitle');
+    const edDesc=document.getElementById('edDesc');
+    const edCat=document.getElementById('edCat');
+    const edUrl=document.getElementById('edUrl');
+    const edSave=document.getElementById('edSave');
+    const edCancel=document.getElementById('edCancel');
+    const toast=document.getElementById('toast');
+
+    // ===== Stato / Storage =====
     let activeCat='Tutte';
     let activeSub='Tutte';
-    let shiftTimer=null, tick=0;
 
-    // ===== Preferenze tipografia =====
+    const LS_LINKS   = 'customLinks_v28';
+    const LS_PINNED  = 'customPinned_v28';
+    const LS_PREFS   = 'prefs_v28';
+    const LS_OVR     = 'overrides_v28';
+    const LS_HIDDEN  = 'hidden_v28';
+
+    const getJSON = (k,f)=>{ try{ return JSON.parse(localStorage.getItem(k)||JSON.stringify(f)); }catch{ return f; } };
+    const setJSON = (k,v)=> localStorage.setItem(k, JSON.stringify(v));
+
+    const getCustomLinks = ()=> getJSON(LS_LINKS, []);
+    const setCustomLinks = v => setJSON(LS_LINKS, v);
+    const getCustomPinned= ()=> getJSON(LS_PINNED, []);
+    const setCustomPinned= v => setJSON(LS_PINNED, v);
+    const getOverrides   = ()=> getJSON(LS_OVR, {});
+    const setOverrides   = v => setJSON(LS_OVR, v);
+    const getHidden      = ()=> getJSON(LS_HIDDEN, []);
+    const setHidden      = v => setJSON(LS_HIDDEN, v);
+
+    // ===== Util =====
+    function normUrl(u){
+      try{
+        if(!/^https?:\/\//i.test(u)) u = 'https://' + u;
+        const url = new URL(u);
+        url.hash='';
+        return url.toString().replace(/\/+$/,'');
+      }catch{ return null; }
+    }
+    function nameFromUrl(u){
+      try{ const {hostname} = new URL(u); return hostname.replace(/^www\./,''); }
+      catch{ return u; }
+    }
+    function showToast(msg,type='ok'){
+      toast.className = 'toast '+type;
+      toast.innerHTML = msg;
+      toast.style.display='block';
+      clearTimeout(showToast._t);
+      showToast._t=setTimeout(()=>toast.style.display='none', 3000);
+    }
+
+    // ===== Tipografia & comportamento =====
     function pxFrom(size, unit){ size=Number(size)||16; return unit==='pt'? size*(96/72) : size; }
     function applyPrefs(){
       const unit=unitSel.value, base=Number(sizeSel.value)||16, scale=(Number(scaleSel.value)||100)/100;
@@ -269,132 +365,282 @@
       document.documentElement.style.setProperty('--lh', lh);
       const pad=densitySel.value==='compact'?12:densitySel.value==='cozy'?18:14;
       document.querySelectorAll('.card').forEach(c=>c.style.padding=pad+'px');
-      if(burnInEl.checked) startShift(); else stopShift();
+      if(!window.__shiftTimer){
+        window.__shiftTick=0;
+        window.__shiftTimer=setInterval(()=>{
+          window.__shiftTick=(window.__shiftTick+1)%4;
+          const dx=(window.__shiftTick===1?1:(window.__shiftTick===3?-1:0)), dy=(window.__shiftTick===2?1:0);
+          container.style.transform=`translate(${dx}px,${dy}px)`;
+        },60000);
+      }
     }
-    function savePrefs(){ localStorage.setItem('prefs', JSON.stringify({
+    function savePrefs(){ setJSON(LS_PREFS, {
       preset:presetSel.value,font:fontSel.value,size:sizeSel.value,unit:unitSel.value,scale:scaleSel.value,
-      burnIn:burnInEl.checked,density:densitySel.value,showUI:uiToggle.checked
-    })); }
-    function loadPrefs(){ try{
-      const p=JSON.parse(localStorage.getItem('prefs')||'{}');
+      density:densitySel.value,filters:tgFilters.checked,add:tgAdd.checked,hideActions:tgHideActions.checked
+    }); }
+    function loadPrefs(){
+      const p=getJSON(LS_PREFS,{});
       if(p.preset) presetSel.value=p.preset; if(p.font) fontSel.value=p.font;
       if(p.size) sizeSel.value=p.size; if(p.unit) unitSel.value=p.unit;
-      if(p.scale) scaleSel.value=p.scale; if(typeof p.burnIn==='boolean') burnInEl.checked=p.burnIn;
-      if(p.density) densitySel.value=p.density; if(typeof p.showUI==='boolean') uiToggle.checked=p.showUI;
-    }catch{} applyPrefs(); applyUIVisibility(); }
-
+      if(p.scale) scaleSel.value=p.scale; if(p.density) densitySel.value=p.density;
+      if(typeof p.filters==='boolean') tgFilters.checked=p.filters;
+      if(typeof p.add==='boolean') tgAdd.checked=p.add;
+      if(typeof p.hideActions==='boolean') tgHideActions.checked=p.hideActions;
+      applyPrefs(); applyUIVisibility();
+    }
     function applyPreset(key){ const p=PRESETS[key]; if(!p) return;
       fontSel.value=p.font; sizeSel.value=p.size; densitySel.value=p.density||'normal';
       applyPrefs(); savePrefs(); }
 
-    // Anti burn-in
-    function startShift(){ if(shiftTimer) return; shiftTimer=setInterval(()=>{ tick=(tick+1)%4; const dx=(tick===1?1:(tick===3?-1:0)), dy=(tick===2?1:0); container.style.transform=`translate(${dx}px,${dy}px)`; },60000); }
-    function stopShift(){ clearInterval(shiftTimer); shiftTimer=null; tick=0; container.style.transform='translate(0,0)'; }
+    // ===== Dataset (RAW + overrides + hidden + custom) =====
+    function buildData(){
+      const overrides = getOverrides();
+      const hiddenSet = new Set(getHidden());
+      const base = RAW
+        .map(x=>({ ...x, url:normUrl(x.url) }))
+        .filter(x=>x.url && !hiddenSet.has(x.url))
+        .map(x=> overrides[x.url] ? { ...x, ...overrides[x.url] } : x);
 
-    // ===== Dati riorganizzati =====
-    const DATA = RAW.map(x=> PINNED.includes(x.name) ? [{...x,cat:'Preferiti'},x] : [x]).flat();
+      const custom = getCustomLinks()
+        .map(x=>({ ...x, url:normUrl(x.url), custom:true }))
+        .filter(x=>x.url && !hiddenSet.has(x.url));
+
+      const all = [...base];
+      const seen = new Set(all.map(x=>x.url));
+      custom.forEach(x=>{ if(!seen.has(x.url)){ all.push(x); seen.add(x.url); } });
+
+      const PINNED = new Set([...PINNED_BASE, ...getCustomPinned()]);
+      const DATA = all.map(x => (PINNED.has(x.name) ? [{...x, cat:'Preferiti'}, x] : [x])).flat();
+      return { DATA, PINNED: Array.from(PINNED) };
+    }
 
     const CATEGORY_ORDER = ['Preferiti','All-news / TV','Quotidiani online','Fact-checking','Geopolitica','Economia & Finanza','Tecnologia','Scienza','Cultura & Spettacoli','Sport','Energia & Ambiente','Cybersecurity','Criptovalute','GDO','Locali'];
-
-    function categories(){
+    function categories(DATA){
       const cats=[...new Set(DATA.map(d=>d.cat))];
       const known=new Set(CATEGORY_ORDER);
       const others=cats.filter(c=>!known.has(c)).sort();
       return CATEGORY_ORDER.filter(c=>cats.includes(c)).concat(others);
     }
 
-    // ===== Chips principali + subchips Locali =====
-    function renderChips(){
+    // ===== Chips =====
+    function renderChips(DATA){
       chipsEl.innerHTML='';
-      const cats=categories();
+      if(!tgFilters.checked){ return; }
+      const cats=categories(DATA);
       chipsEl.appendChild(chip(`Tutte (${DATA.length})`,()=>{activeCat='Tutte'; activeSub='Tutte'; render();},activeCat==='Tutte'));
       cats.forEach(cat=>{
         const n=DATA.filter(d=>d.cat===cat).length;
         chipsEl.appendChild(chip(`${cat} (${n})`,()=>{activeCat=(activeCat===cat?'Tutte':cat); activeSub='Tutte'; render();},activeCat===cat));
       });
-      renderSubchips();
+      renderSubchips(DATA);
     }
-
-    function renderSubchips(){
-      if(activeCat!=='Locali' || !uiToggle.checked){ subchipsEl.style.display='none'; subchipsEl.innerHTML=''; return; }
+    function renderSubchips(DATA){
+      if(!(tgFilters.checked) || activeCat!=='Locali'){ subchipsEl.style.display='none'; subchipsEl.innerHTML=''; return; }
       const subs=[...new Set(DATA.filter(d=>d.cat==='Locali').map(d=>d.sub||'Altro'))].sort();
-      subchipsEl.style.display='flex';
-      subchipsEl.innerHTML='';
+      subchipsEl.style.display='flex'; subchipsEl.innerHTML='';
       subchipsEl.appendChild(chip(`Tutte Locali`,()=>{activeSub='Tutte'; render();},activeSub==='Tutte'));
       subs.forEach(s=>{
         const n=DATA.filter(d=>d.cat==='Locali' && (d.sub||'Altro')===s).length;
         subchipsEl.appendChild(chip(`${s} (${n})`,()=>{activeSub=(activeSub===s?'Tutte':s); render();},activeSub===s));
       });
     }
-
     function chip(label,onClick,active=false){
       const b=document.createElement('button'); b.className='chip'+(active?' active':''); b.textContent=label; b.onclick=onClick; return b;
     }
 
     // ===== Visibilità UI =====
     function applyUIVisibility(){
-      const show=uiToggle.checked;
-      toolbar.style.display = show ? 'grid' : 'none';
-      chipsEl.style.display = show ? 'flex' : 'none';
-      if(show){ renderSubchips(); } else { subchipsEl.style.display='none'; }
+      toolbar.style.display = tgFilters.checked ? 'grid' : 'none';
+      chipsEl.style.display = tgFilters.checked ? 'flex' : 'none';
+      if(!tgFilters.checked){ subchipsEl.style.display='none'; }
+      addBtn.style.display = tgAdd.checked ? 'inline-block' : 'none';
+      if(!tgAdd.checked){ importBar.style.display='none'; }
+      document.body.classList.toggle('hide-actions', tgHideActions.checked);
+    }
+
+    // ===== Preferiti / Rimozione / Modifica =====
+    function togglePin(name){
+      const set = new Set(getCustomPinned());
+      if(set.has(name)){ set.delete(name); showToast('Rimosso dai Preferiti','ok'); }
+      else{ set.add(name); showToast('Aggiunto ai Preferiti','ok'); }
+      setCustomPinned([...set]); render();
+    }
+
+    function removeByUrl(url){
+      const nu = normUrl(url); if(!nu) return;
+      // prima da custom
+      let list = getCustomLinks();
+      const before = list.length;
+      list = list.filter(x=>normUrl(x.url)!==nu);
+      if(list.length !== before){
+        setCustomLinks(list);
+        showToast('Rimosso (voce aggiunta da te)','ok');
+      } else {
+        // base -> nascondi
+        const hidden = new Set(getHidden());
+        hidden.add(nu);
+        setHidden([...hidden]);
+        showToast('Nascosto (voce di base)','ok');
+      }
+      render();
+    }
+
+    let editingUrl = null;
+
+    function openEdit(url){
+      const nu=normUrl(url); if(!nu) return;
+      editingUrl = nu;
+
+      const overrides = getOverrides();
+      const custom = getCustomLinks();
+      const fromCustom = custom.find(x=>normUrl(x.url)===nu);
+
+      if(fromCustom){
+        edTitle.value = fromCustom.name || '';
+        edDesc.value  = fromCustom.desc || '';
+        edCat.value   = fromCustom.cat  || 'Varie';
+      } else {
+        const base = RAW.find(x=>normUrl(x.url)===nu) || {};
+        const ovr = overrides[nu] || {};
+        edTitle.value = ovr.name || base.name || nameFromUrl(nu);
+        edDesc.value  = ovr.desc || base.desc || '';
+        edCat.value   = ovr.cat  || base.cat  || 'Varie';
+      }
+      edUrl.value = nu;
+
+      overlay.style.display='flex';
+      overlay.setAttribute('aria-hidden','false');
+    }
+    function closeEdit(){
+      overlay.style.display='none';
+      overlay.setAttribute('aria-hidden','true');
+      editingUrl=null;
+    }
+    function saveEdit(){
+      if(!editingUrl) return closeEdit();
+      const name = edTitle.value.trim() || nameFromUrl(editingUrl);
+      const desc = edDesc.value.trim();
+      const cat  = edCat.value.trim() || 'Varie';
+
+      const list = getCustomLinks();
+      const idx = list.findIndex(x=>normUrl(x.url)===editingUrl);
+      if(idx>=0){
+        list[idx] = { ...list[idx], name, desc, cat };
+        setCustomLinks(list);
+        showToast('Modificato (voce personale)','ok');
+      } else {
+        const ovr = getOverrides();
+        ovr[editingUrl] = { name, desc, cat };
+        setOverrides(ovr);
+        showToast('Modificato (override voce di base)','ok');
+      }
+      closeEdit();
+      render();
     }
 
     // ===== Render =====
+    function cardNode(it, pinnedList){
+      const c=document.createElement('div'); c.className='card';
+      c.innerHTML=`<h3><a href="${it.url}" target="_blank" rel="noopener">${it.name}</a></h3><p>${it.desc||''}</p>`;
+      const actions=document.createElement('div'); actions.className='actions';
+
+      const isPinned = pinnedList.includes(it.name);
+      const star=document.createElement('button');
+      star.className='icon-btn star'+(isPinned?' on':'');
+      star.textContent = isPinned ? '★' : '☆';
+      star.title = isPinned ? 'Rimuovi dai Preferiti' : 'Aggiungi ai Preferiti';
+      star.type='button';
+      star.onclick=()=>togglePin(it.name);
+      actions.appendChild(star);
+
+      const edit=document.createElement('button');
+      edit.className='icon-btn edit';
+      edit.textContent='✏️';
+      edit.title='Modifica titolo/descrizione/categoria';
+      edit.type='button';
+      edit.onclick=()=>openEdit(it.url);
+      actions.appendChild(edit);
+
+      const trash=document.createElement('button');
+      trash.className='icon-btn trash';
+      trash.textContent='🗑️';
+      trash.title='Rimuovi (se base: nasconde; se aggiunta da te: elimina)';
+      trash.type='button';
+      trash.onclick=()=>removeByUrl(it.url);
+      actions.appendChild(trash);
+
+      c.appendChild(actions);
+      return c;
+    }
+
+    function buildAndCategories(){
+      const built = buildData();
+      const DATA = built.DATA;
+      const cats = (tgFilters.checked && activeCat!=='Tutte') ? [activeCat] : categories(DATA);
+      return { built, DATA, cats };
+    }
+
     function render(){
+      const { built, DATA, cats } = buildAndCategories();
       contentEl.innerHTML='';
-      const cats = activeCat==='Tutte' ? categories() : [activeCat];
+      renderChips(DATA);
 
       cats.forEach(cat=>{
         let items = DATA.filter(d=>d.cat===cat);
         if(cat==='Locali' && activeSub!=='Tutte'){ items = items.filter(d=>(d.sub||'Altro')===activeSub); }
         if(!items.length) return;
 
-        if(cat==='Locali'){
+        if(cat==='Locali' && activeSub==='Tutte' && tgFilters.checked){
           const bySub={}; items.forEach(it=>{ const k=it.sub||'Altro'; (bySub[k] ||= []).push(it); });
-          const order=Object.keys(bySub).sort((a,b)=>a.localeCompare(b,'it'));
-          order.forEach(sub=>{
+          Object.keys(bySub).sort((a,b)=>a.localeCompare(b,'it')).forEach(sub=>{
             const sec=document.createElement('section'); sec.innerHTML=`<h2>${cat} — ${sub}</h2>`;
             const grid=document.createElement('div'); grid.className='grid';
-            bySub[sub].sort((a,b)=>a.name.localeCompare(b.name,'it')).forEach(it=>{
-              const c=document.createElement('div'); c.className='card';
-              c.innerHTML=`<h3><a href="${it.url}" target="_blank" rel="noopener">${it.name}</a></h3><p>${it.desc}</p>`;
-              grid.appendChild(c);
-            });
+            bySub[sub].sort((a,b)=>a.name.localeCompare(b.name,'it')).forEach(it=>grid.appendChild(cardNode(it, built.PINNED)));
             sec.appendChild(grid); contentEl.appendChild(sec);
           });
-        } else {
-          const sec=document.createElement('section'); sec.innerHTML=`<h2>${cat}</h2>`;
-          const grid=document.createElement('div'); grid.className='grid';
-          items.sort((a,b)=>cat==='Prime scelte' ? (PINNED.indexOf(a.name)-PINNED.indexOf(b.name)) : a.name.localeCompare(b.name,'it'))
-               .forEach(it=>{
-                 const c=document.createElement('div'); c.className='card';
-                 c.innerHTML=`<h3><a href="${it.url}" target="_blank" rel="noopener">${it.name}</a></h3><p>${it.desc}</p>`;
-                 grid.appendChild(c);
-               });
-          sec.appendChild(grid); contentEl.appendChild(sec);
+          return;
         }
+
+        const sec=document.createElement('section'); sec.innerHTML=`<h2>${cat}</h2>`;
+        const grid=document.createElement('div'); grid.className='grid';
+        items.sort((a,b)=>a.name.localeCompare(b.name,'it')).forEach(it=>grid.appendChild(cardNode(it, built.PINNED)));
+        sec.appendChild(grid); contentEl.appendChild(sec);
       });
 
       applyPrefs();
-      renderSubchips();
       applyUIVisibility();
     }
 
-    // ===== Eventi UI =====
-    presetSel.addEventListener('change',()=>{ if(presetSel.value==='none'){savePrefs();return;} applyPreset(presetSel.value); });
-    fontSel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
-    sizeSel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
-    unitSel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
-    scaleSel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
-    densitySel.addEventListener('change',()=>{ presetSel.value='none'; applyPrefs(); savePrefs(); });
-    burnInEl.addEventListener('change',()=>{ savePrefs(); applyPrefs(); });
-    uiToggle.addEventListener('change',()=>{ applyUIVisibility(); savePrefs(); });
+    // ===== Eventi =====
+    document.getElementById('edCancel').addEventListener('click', closeEdit);
+    overlay.addEventListener('click', (e)=>{ if(e.target===overlay) closeEdit(); });
+    document.getElementById('edSave').addEventListener('click', saveEdit);
 
-    // Scorciatoia tastiera per mostra/nascondi UI (U)
-    document.addEventListener('keydown',(e)=>{ if(e.key.toLowerCase()==='u'){ uiToggle.checked=!uiToggle.checked; applyUIVisibility(); savePrefs(); } });
+    function toggleAddBar(show){ importBar.style.display = show ? 'grid' : 'none'; }
+    addBtn.addEventListener('click',()=>{ if(!tgAdd.checked) return; toggleAddBar(importBar.style.display!=='grid'); });
+    impHide.addEventListener('click',()=>toggleAddBar(false));
+    impAdd.addEventListener('click',()=>{
+      const nu = normUrl(impUrl.value.trim());
+      if(!nu){ showToast('URL non valido','err'); return; }
+      const list = getCustomLinks();
+      if(list.find(x=>normUrl(x.url)===nu)){ showToast('Già presente','warn'); return; }
+      const name = impTitle.value.trim() || nameFromUrl(nu);
+      const desc = impDesc.value.trim();
+      const cat  = impCat.value.trim() || 'Varie';
+      list.push({name, url:nu, desc, cat});
+      setCustomLinks(list);
+      showToast('Aggiunto','ok');
+      impUrl.value=''; impTitle.value=''; impDesc.value=''; impCat.value='';
+      render();
+    });
 
-    // ===== Avvio =====
-    renderChips(); render(); loadPrefs(); if(presetSel.value!=='none') applyPreset(presetSel.value);
+    [presetSel,fontSel,sizeSel,unitSel,scaleSel,densitySel].forEach(el=>el.addEventListener('change',()=>{ applyPrefs(); savePrefs(); }));
+    [tgFilters,tgAdd,tgHideActions].forEach(el=>el.addEventListener('change',()=>{ applyUIVisibility(); savePrefs(); }));
+
+    // Avvio
+    loadPrefs();
+    render();
+    if(presetSel.value!=='none') applyPreset(presetSel.value);
   </script>
 </body>
 </html>
